@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bi5kywh3jc1ac"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "teserserser"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(2, 10)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+text = "resrsdrser"
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 2
+border_color = Color(1, 1, 1, 1)
