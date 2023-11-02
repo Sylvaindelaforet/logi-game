@@ -1,8 +1,7 @@
-res://scenes/coffre.tscn
+res://scenes/main.tscn
 res://script/coffre.gd
 res://script/hud_script.gd
-res://scenes/main.tscn
+res://scenes/coffre.tscn
 res://scenes/player.tscn
 res://ui/test_tree.tscn
 res://ui/test_hbox.tscn
-res://script/player.gd

@@ -17,7 +17,7 @@ func _ready():
 #	pass
 
 func _input_event(_viewport, event, _shape_idx):
-	if event.is_action("clic_droit"):
+	if event.is_action_pressed("clic_droit"):
 		print("ok")
 		var pos: Vector2 = get_global_mouse_position()
 		hud.display_popup_menu.emit(pos)

@@ -38,3 +38,5 @@ position = Vector2(398, 241)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("7_57k0n")
+
+[node name="ClicDroit" type="PopupMenu" parent="HUD"]
