@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgevsb2hcuk3b"]
+[gd_scene load_steps=5 format=3 uid="uid://dgevsb2hcuk3b"]
 
 [ext_resource type="Script" path="res://script/coffre.gd" id="1_8vkiw"]
 [ext_resource type="Texture2D" uid="uid://cs8uj63q7vj4x" path="res://icon.svg" id="1_mwkms"]
+[ext_resource type="PackedScene" uid="uid://dp82dlr2rua5n" path="res://scenes/inventaire.tscn" id="3_q11gq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_612li"]
 size = Vector2(129, 129)
@@ -17,3 +18,5 @@ shape = SubResource("RectangleShape2D_612li")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
 texture = ExtResource("1_mwkms")
+
+[node name="Inventaire" parent="." instance=ExtResource("3_q11gq")]

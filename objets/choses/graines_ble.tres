@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_margf")
-nom = ""
+nom = "graine de ble"
 denombrable = false
 masse_volumique = -1.0

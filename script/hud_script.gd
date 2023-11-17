@@ -1,24 +1,27 @@
 extends CanvasLayer
+class_name Hud
 
-signal display_popup_menu(pos:Vector2)
+signal popup_menu_asked(options:Array[String], demandeur)
 
-var menu:PopupMenu
+var clic_droit:PopupMenu
+
+var quémandeur
 
 func _ready():
-	display_popup_menu.connect(test_signal)
-	print($PopupMenu)
-	menu = $ClicDroit
+	popup_menu_asked.connect(display_popup_menu)
+	clic_droit = $ClicDroit
+	clic_droit.popup_window = true
+	clic_droit.id_pressed.connect(send_response)
 
-func _create_popup():
-	var menu:PopupMenu = PopupMenu.new()
-	menu.add_item("coucou")
-	menu.visible = true
+func display_popup_menu(options:Array[String], demandeur):
+	clic_droit.clear()
+	clic_droit.position = get_viewport().get_mouse_position()
+	for option in options:
+		clic_droit.add_item(option)
+	clic_droit.visible = true
+	quémandeur = demandeur
 
-
-func test_signal(pos:Vector2):
-	menu.clear()
-	menu.position = pos
-	menu.add_item("option 1")
-	menu.visible = true
-	menu.add_item("option 2")
+func send_response(option):
+	quémandeur.chosen_action(option)
+	quémandeur = null
 

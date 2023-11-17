@@ -1,8 +1,10 @@
+Node
 PopupMenu
+CanvasLayer
+Camera2D
 VBoxContainer
 BoxContainer
 Button
-CanvasLayer
 Label
 Tree
 Control
@@ -15,4 +17,3 @@ CollisionShape2D
 CharacterBody2D
 StaticBody2D
 Node2D
-Node
