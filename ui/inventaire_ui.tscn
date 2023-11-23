@@ -50,6 +50,14 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
+[node name="Control" type="Control" parent="ColorRect/HBoxContainer/Panel/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="ColorRect/HBoxContainer/Panel/TabContainer"]
+visible = false
+layout_mode = 2
+
 [node name="Panel2" type="Panel" parent="ColorRect/HBoxContainer"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2

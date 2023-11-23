@@ -10,7 +10,7 @@ var stacks:Array[Stack]
 func print_inventory():
 	print("print de l'inventaire : ")
 	for stack in stacks:
-		stack.f_print_stack()
+		print(stack.f_to_string())
 
 
 # must be either {nombre(int) : masse (float)} either float 

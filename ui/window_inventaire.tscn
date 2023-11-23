@@ -1,0 +1,82 @@
+[gd_scene load_steps=2 format=3 uid="uid://2de6xd41lo4k"]
+
+[ext_resource type="Script" path="res://ui/window_inventaire.gd" id="1_h61jk"]
+
+[node name="Window_Inventaire" type="Window"]
+position = Vector2i(0, 36)
+size = Vector2i(500, 300)
+min_size = Vector2i(500, 300)
+max_size = Vector2i(1500, 1100)
+script = ExtResource("1_h61jk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.462745, 0.329412, 0.227451, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TabContainer" type="TabContainer" parent="ColorRect/HBoxContainer/PanelContainer"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="vbox" type="VBoxContainer" parent="ColorRect/HBoxContainer/PanelContainer/TabContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/HBoxContainer/PanelContainer/TabContainer/vbox"]
+layout_mode = 2
+text = "texte label esrser ser er er err eee e
+e esrrsd
+esrser
+"
+
+[node name="Label2" type="Label" parent="ColorRect/HBoxContainer/PanelContainer/TabContainer/vbox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "texte 2"
+
+[node name="PanelContainer2" type="PanelContainer" parent="ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="ColorRect/HBoxContainer/PanelContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Actions"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/HBoxContainer/PanelContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "rich text "
+
+[node name="Button" type="Button" parent="ColorRect/HBoxContainer/PanelContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "transfer >"
+
+[node name="Button2" type="Button" parent="ColorRect/HBoxContainer/PanelContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "< transfer"
+
+[node name="PanelContainer3" type="PanelContainer" parent="ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3

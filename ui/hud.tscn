@@ -1,11 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d16jlic470g2h"]
+[gd_scene load_steps=2 format=3 uid="uid://d16jlic470g2h"]
 
 [ext_resource type="Script" path="res://script/hud_script.gd" id="1_0fn4d"]
-[ext_resource type="PackedScene" uid="uid://b4g8ralhapcnc" path="res://ui/inventaire_ui.tscn" id="2_n11n5"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_0fn4d")
 
 [node name="ClicDroit" type="PopupMenu" parent="."]
-
-[node name="Inventaire_UI" parent="." instance=ExtResource("2_n11n5")]

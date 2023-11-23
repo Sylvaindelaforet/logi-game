@@ -5,3 +5,7 @@ res://scenes/coffre.tscn
 res://scenes/player.tscn
 res://ui/hud.tscn
 res://scenes/inventaire.tscn
+res://ui/window_inventaire.tscn
+res://ui/window_inventaire.gd
+res://objets/stack.gd
+res://script/inventaire.gd
