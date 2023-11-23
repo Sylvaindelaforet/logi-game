@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://b4g8ralhapcnc"]
+
+[node name="Inventaire_UI" type="Control"]
+layout_mode = 3
+anchor_right = 0.562
+anchor_bottom = 0.637
+offset_right = 0.575928
+offset_bottom = 0.223999
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.243137, 0.243137, 0.243137, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="ColorRect/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="tab1" type="Control" parent="ColorRect/HBoxContainer/Panel/TabContainer"]
+layout_mode = 2
+
+[node name="tab2" type="Control" parent="ColorRect/HBoxContainer/Panel/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextEdit" type="TextEdit" parent="ColorRect/HBoxContainer/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(20, 40)
+layout_mode = 2
+text = "control panel"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="ColorRect/HBoxContainer/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "< transfer"
+
+[node name="Button2" type="Button" parent="ColorRect/HBoxContainer/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "transfer >"
+
+[node name="Panel3" type="Panel" parent="ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="ColorRect/HBoxContainer/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "inventaires 2"

@@ -1,12 +1,7 @@
-res://ui/hud.tscn
+res://ui/inventaire_ui.tscn
 res://script/coffre.gd
 res://scenes/main.tscn
 res://scenes/coffre.tscn
 res://scenes/player.tscn
+res://ui/hud.tscn
 res://scenes/inventaire.tscn
-res://script/inventaire.gd
-res://objets/choses/eau.tres
-res://objets/chose.gd
-res://objets/choses/graines_ble.tres
-res://script/hud_script.gd
-res://objets/choses/pomme.tres

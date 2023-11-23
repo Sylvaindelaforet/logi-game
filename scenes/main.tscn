@@ -7,14 +7,15 @@
 [node name="Main" type="Node2D"]
 
 [node name="Coffre" parent="." instance=ExtResource("1_g27gp")]
-position = Vector2(2, 2)
+position = Vector2(137, 161)
 
 [node name="Coffre2" parent="." instance=ExtResource("1_g27gp")]
 position = Vector2(476, 101)
 
 [node name="Player" parent="." instance=ExtResource("2_pxqga")]
-position = Vector2(469, 297)
+position = Vector2(432, 352)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+visible = false
 
 [node name="HUD" parent="." instance=ExtResource("8_x1fet")]

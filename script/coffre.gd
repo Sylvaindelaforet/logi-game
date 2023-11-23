@@ -6,7 +6,7 @@ var hud:CanvasLayer
 
 var inventaire:Inventaire
 
-var options_clic_droit:Array[String] = ["ouvrir", "ajouter pomme"]
+var options_clic_droit:Array[String] = ["ouvrir", "ajouter pomme", "ajouter grosse pomme"]
 
 var pomme:Chose = preload("res://objets/choses/pomme.tres")
 
@@ -24,6 +24,8 @@ func chosen_action(option:int):
 		0:
 			inventaire.print_inventory()
 		1:
-			inventaire.add_ressource(pomme, 1)
+			inventaire.add_stack(Stack.new(pomme, {0.145 : 3}))
+		2:
+			inventaire.add_stack(Stack.new(pomme, {0.200 : 1}))
 
 

@@ -7,3 +7,4 @@ script = ExtResource("1_sshap")
 nom = "eau"
 denombrable = false
 masse_volumique = 1.0
+possible_caracteristiques = {}

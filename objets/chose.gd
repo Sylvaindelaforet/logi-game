@@ -4,8 +4,7 @@ class_name Chose
 # DOIT être unique, il ne doit pas y avoir 2 choses différentes avec le même nom
 @export var nom: String = ""
 
-@export var denombrable: bool = false
-var nombre: int
+@export var is_denombrable: bool = false
 
 # masse volumique en g.mL-1 càd kg/L
 @export var masse_volumique:float = -1
@@ -14,11 +13,5 @@ var nombre: int
 
 # @export var liste_caracteristiques:Array[Caracteristique]
 # on utilisera pour : liquide, bonne qualité ...
-# dictionnaire "caractéristique" -> valeur ???
-# 
-
-
-func equal_thing(autre_chose:Chose):
-	# TODO plus tard : ajouer caractéristiques
-	return nom == autre_chose.nom
-
+# dictionnaire "caractéristique" -> valeur par défaut
+@export var possible_caracteristiques:Dictionary

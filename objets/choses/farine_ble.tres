@@ -7,3 +7,4 @@ script = ExtResource("1_wewtv")
 nom = "farine de blé"
 denombrable = false
 masse_volumique = 0.55
+possible_caracteristiques = {}

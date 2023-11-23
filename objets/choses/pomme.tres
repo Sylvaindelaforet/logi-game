@@ -5,5 +5,6 @@
 [resource]
 script = ExtResource("1_3vsty")
 nom = "pomme"
-denombrable = true
+is_denombrable = true
 masse_volumique = 0.84
+possible_caracteristiques = {}
