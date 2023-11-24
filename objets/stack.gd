@@ -27,6 +27,7 @@ func _init(p_chose:Chose, quantite):
 func add_stack(stack:Stack):
 	if stack.chose.is_denombrable:
 		for key in stack.chose_quantities.keys():
+			masse_totale = masse_totale + key
 			if self.chose_quantities.has(key):
 				chose_quantities[key] = chose_quantities[key] + stack.chose_quantities[key]
 			else:
@@ -66,4 +67,16 @@ func equals (other_stack:Stack):
 			return false
 		if modified_caracteristiques[key] != other_stack.modified_caracteristiques[key]:
 			return false
+
+
+func create_tab(grid:GridContainer):
+	var label:Label = Label.new()
+	var label1:Label = Label.new()
+	var label2:Label = Label.new()
+	grid.add_child(label)
+	grid.add_child(label1)
+	grid.add_child(label2)
+	label.text = chose.nom
+	label1.text = String.num(masse_totale)
+	label2.text = "volume-soon"
 

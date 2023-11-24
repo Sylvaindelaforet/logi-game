@@ -32,3 +32,9 @@ func add_dictionary(dic1:Dictionary, dic2:Dictionary):
 			dic1[key] = dic1[key] + dic2[key]
 
 
+func create_tab(grid:GridContainer):
+	for stack in stacks:
+		stack.create_tab(grid)
+
+
+

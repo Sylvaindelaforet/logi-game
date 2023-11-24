@@ -22,7 +22,7 @@ func _input_event(_viewport, event, _shape_idx):
 func chosen_action(option:int):
 	match option:
 		0:
-			inventaire.print_inventory()
+			hud.display_inventory(inventaire)
 		1:
 			inventaire.add_stack(Stack.new(pomme, {0.145 : 3}))
 		2:

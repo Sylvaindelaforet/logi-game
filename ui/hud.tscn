@@ -3,6 +3,9 @@
 [ext_resource type="Script" path="res://script/hud_script.gd" id="1_0fn4d"]
 
 [node name="HUD" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_0fn4d")
 
 [node name="ClicDroit" type="PopupMenu" parent="."]
+
+[connection signal="mouse_entered" from="ClicDroit" to="." method="_on_clic_droit_mouse_entered"]
