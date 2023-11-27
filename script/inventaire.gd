@@ -1,17 +1,14 @@
 extends Node
 class_name Inventaire
 
-
 # pour les masses des objets différents, on a la possibilité d'avoir 
 # il ne faut pas un grand nombre de masses différentes pour  les choses
 var stacks:Array[Stack]
 
-
-func print_inventory():
+func debug_print_inventory():
 	print("print de l'inventaire : ")
 	for stack in stacks:
-		print(stack.f_to_string())
-
+		print(stack.debug_to_string())
 
 # must be either {nombre(int) : masse (float)} either float 
 func add_stack(new_stack:Stack):
@@ -36,5 +33,6 @@ func create_tab(grid:GridContainer):
 	for stack in stacks:
 		stack.create_tab(grid)
 
-
+func get_tab_name():
+	return get_parent().name + "Inventaire"
 

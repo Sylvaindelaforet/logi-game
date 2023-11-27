@@ -35,7 +35,7 @@ func add_stack(stack:Stack):
 	else:
 		masse_totale = masse_totale + stack.masse_totale
 
-func f_print_stack():
+func debug_print_stack():
 	if chose.is_denombrable:
 		print(chose.nom)
 		for key in chose_quantities.keys():
@@ -78,5 +78,16 @@ func create_tab(grid:GridContainer):
 	grid.add_child(label2)
 	label.text = chose.nom
 	label1.text = String.num(masse_totale)
-	label2.text = "volume-soon"
+	label2.text = String.num(masse_totale*chose.masse_volumique)
+	if chose.is_denombrable:
+		for sub_stack in chose_quantities.keys():
+			label = Label.new()
+			label1 = Label.new()
+			label2 = Label.new()
+			grid.add_child(label)
+			grid.add_child(label1)
+			grid.add_child(label2)
+			label.text = "masse : " + String.num(sub_stack)
+			label1.text = String.num(sub_stack*chose_quantities[sub_stack])
+			label2.text = String.num(sub_stack*chose_quantities[sub_stack]*chose.masse_volumique)
 

@@ -4,13 +4,27 @@
 
 [node name="TabInventaire" type="ScrollContainer"]
 anchors_preset = -1
-anchor_right = 0.027
-anchor_bottom = 0.044
-offset_right = -0.5
-offset_bottom = 0.399998
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_30jxn")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 2
 columns = 3
+
+[node name="Label" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "eeee"
+
+[node name="Label2" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "zzzz"
+
+[node name="Label3" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "aaaa"

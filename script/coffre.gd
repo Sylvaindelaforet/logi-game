@@ -30,9 +30,7 @@ func chosen_action(option:int):
 			inventaire.add_stack(Stack.new(pomme, {0.200 : 1}))
 
 func _on_screen_entered():
-	print(name, "entered screen")
 	hud.add_inventaire_visible(inventaire)
 
 func _on_screen_exited():
-	print(name, "exited screen")
 	hud.remove_inventaire_visible(inventaire)
