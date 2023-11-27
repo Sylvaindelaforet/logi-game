@@ -1,38 +1,35 @@
 extends Window
 class_name Window_inventaire
 
-var tabcontainer:TabContainer
+var right_tab_container:TabContainer
+var left_tab_container:TabContainer
+
+var inventaires_modifiables:Inventaire
+
+var tab_scene:PackedScene
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	tabcontainer = $ColorRect/HBoxContainer/PanelContainer/TabContainer
-
-func create_tab(inventaire:Inventaire):
-	var scrollbar = ScrollContainer.new()
-	var grid:GridContainer = GridContainer.new()
-	grid.columns = 3
-	tabcontainer.add_child(scrollbar)
-	scrollbar.add_child(grid)
-	scrollbar.name = inventaire.get_name()
-	# add items
-	inventaire.create_tab(grid)
-
-func _notification(blah):
-	match blah:
-		NOTIFICATION_WM_MOUSE_EXIT:
-			print('Mouse left window')
-		NOTIFICATION_WM_MOUSE_ENTER:
-			print('Mouse entered window')
+	left_tab_container = $ColorRect/HBoxContainer/TabContainerLeft
+	right_tab_container = $ColorRect/HBoxContainer/TabContainerRight
+	tab_scene = preload("res://ui/tab_inventaire.tscn")
+	create_tab($/root/Main/Player.get_inventaire())
 
 
-func _on_focus_exited():
-	print("focus exited")
+func create_tab(inventaire:Inventaire, left:bool = true):
+	var tab = tab_scene.instantiate()
+	tab.name = inventaire.get_name()
 
-func _on_focus_entered():
-	print("focus entered")
+	if left:
+		left_tab_container.add_child(tab)
+	else:
+		right_tab_container.add_child(tab)
 
-func _on_mouse_exited():
-	print("mouse exited")
+	# add items TODO aller chercher array de string
+	tab.create_tab(inventaire)
 
-func _on_mouse_entered():
-	print("mouse entered")
+
+func _on_close_requested():
+	queue_free()
+

@@ -2,7 +2,7 @@ extends StaticBody2D
 class_name Coffre
 
 
-var hud:CanvasLayer
+var hud:Hud
 
 var inventaire:Inventaire
 
@@ -13,7 +13,8 @@ var pomme:Chose = preload("res://objets/choses/pomme.tres")
 func _ready():
 	inventaire = $Inventaire
 	hud = $/root/Main/HUD
-
+	if $VisibleOnScreenEnabler2D.is_on_screen():
+		_on_screen_entered()
 
 func _input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed("clic_droit"):
@@ -28,4 +29,10 @@ func chosen_action(option:int):
 		2:
 			inventaire.add_stack(Stack.new(pomme, {0.200 : 1}))
 
+func _on_screen_entered():
+	print(name, "entered screen")
+	hud.add_inventaire_visible(inventaire)
 
+func _on_screen_exited():
+	print(name, "exited screen")
+	hud.remove_inventaire_visible(inventaire)

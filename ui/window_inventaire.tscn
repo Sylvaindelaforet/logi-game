@@ -1,10 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://2de6xd41lo4k"]
+[gd_scene load_steps=3 format=3 uid="uid://2de6xd41lo4k"]
 
 [ext_resource type="Script" path="res://ui/window_inventaire.gd" id="1_h61jk"]
+[ext_resource type="Script" path="res://ui/tab_container.gd" id="2_lbkku"]
 
 [node name="Window_Inventaire" type="Window"]
+position = Vector2i(0, 36)
 size = Vector2i(500, 300)
-mouse_passthrough_polygon = PackedVector2Array(0, 0, 500, 0, 500, 300, 0, 300)
 min_size = Vector2i(500, 300)
 max_size = Vector2i(1500, 1100)
 script = ExtResource("1_h61jk")
@@ -15,7 +16,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.462745, 0.329412, 0.227451, 1)
+mouse_filter = 1
+color = Color(0.65098, 0.466667, 0.333333, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
 layout_mode = 1
@@ -25,42 +27,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="ColorRect/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
+[node name="TabContainerLeft" type="TabContainer" parent="ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="TabContainer" type="TabContainer" parent="ColorRect/HBoxContainer/PanelContainer"]
-layout_mode = 2
+drag_to_rearrange_enabled = true
+script = ExtResource("2_lbkku")
 metadata/_edit_use_anchors_ = true
-
-[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect/HBoxContainer/PanelContainer/TabContainer"]
-layout_mode = 2
-
-[node name="GridContainer" type="GridContainer" parent="ColorRect/HBoxContainer/PanelContainer/TabContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-columns = 3
-
-[node name="Label" type="Label" parent="ColorRect/HBoxContainer/PanelContainer/TabContainer/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "trezrze"
-
-[node name="Label2" type="Label" parent="ColorRect/HBoxContainer/PanelContainer/TabContainer/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "tzzerze"
-
-[node name="Label3" type="Label" parent="ColorRect/HBoxContainer/PanelContainer/TabContainer/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "teeee"
-
-[node name="Label4" type="Label" parent="ColorRect/HBoxContainer/PanelContainer/TabContainer/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "t"
 
 [node name="PanelContainer2" type="PanelContainer" parent="ColorRect/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -69,15 +42,11 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/HBoxContainer/PanelContainer2"]
 layout_mode = 2
 
-[node name="TextEdit" type="TextEdit" parent="ColorRect/HBoxContainer/PanelContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+[node name="Label" type="Label" parent="ColorRect/HBoxContainer/PanelContainer2/VBoxContainer"]
 layout_mode = 2
 text = "Actions"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/HBoxContainer/PanelContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-text = "rich text "
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="ColorRect/HBoxContainer/PanelContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -89,14 +58,12 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "< transfer"
 
-[node name="PanelContainer3" type="PanelContainer" parent="ColorRect/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
+[node name="TabContainerRight" type="TabContainer" parent="ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+drag_to_rearrange_enabled = true
+script = ExtResource("2_lbkku")
+metadata/_edit_use_anchors_ = true
 
-[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
-[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="gui_release_focus"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="ColorRect" to="." method="_on_mouse_entered"]
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
