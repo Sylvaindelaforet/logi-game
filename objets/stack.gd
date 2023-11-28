@@ -27,7 +27,7 @@ func _init(p_chose:Chose, quantite):
 func add_stack(stack:Stack):
 	if stack.chose.is_denombrable:
 		for key in stack.chose_quantities.keys():
-			masse_totale = masse_totale + key
+			masse_totale = masse_totale + key * stack.chose_quantities[key]
 			if self.chose_quantities.has(key):
 				chose_quantities[key] = chose_quantities[key] + stack.chose_quantities[key]
 			else:
@@ -70,24 +70,20 @@ func equals (other_stack:Stack):
 
 
 func create_tab(grid:GridContainer):
-	var label:Label = Label.new()
-	var label1:Label = Label.new()
-	var label2:Label = Label.new()
-	grid.add_child(label)
-	grid.add_child(label1)
-	grid.add_child(label2)
-	label.text = chose.nom
-	label1.text = String.num(masse_totale)
-	label2.text = String.num(masse_totale*chose.masse_volumique)
+	_new_label(chose.nom, grid)
+	_new_label(String.num(masse_totale), grid)
+	_new_label(String.num(masse_totale*chose.masse_volumique), grid)
+	
 	if chose.is_denombrable:
 		for sub_stack in chose_quantities.keys():
-			label = Label.new()
-			label1 = Label.new()
-			label2 = Label.new()
-			grid.add_child(label)
-			grid.add_child(label1)
-			grid.add_child(label2)
-			label.text = "masse : " + String.num(sub_stack)
-			label1.text = String.num(sub_stack*chose_quantities[sub_stack])
-			label2.text = String.num(sub_stack*chose_quantities[sub_stack]*chose.masse_volumique)
+			var txt = String.num(sub_stack) + "kg x" + String.num_int64(chose_quantities[sub_stack])
+			_new_label(txt, grid)
+			_new_label(String.num(sub_stack*chose_quantities[sub_stack]), grid)
+			_new_label(String.num(sub_stack*chose_quantities[sub_stack]*chose.masse_volumique), grid)
 
+func _new_label(txt:String, grid:GridContainer):
+	var label:Label = Label.new()
+	label.text = txt
+	grid.add_child(label)
+	return label
+	

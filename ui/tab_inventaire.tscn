@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://ui/tab_inventaire.gd" id="1_30jxn"]
 
 [node name="TabInventaire" type="ScrollContainer"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
@@ -15,16 +15,21 @@ script = ExtResource("1_30jxn")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 3
 columns = 3
 
 [node name="Label" type="Label" parent="GridContainer"]
 layout_mode = 2
-text = "eeee"
+size_flags_horizontal = 3
+text = "Nom"
 
 [node name="Label2" type="Label" parent="GridContainer"]
 layout_mode = 2
-text = "zzzz"
+size_flags_horizontal = 3
+text = "Masse (kg)"
 
 [node name="Label3" type="Label" parent="GridContainer"]
 layout_mode = 2
-text = "aaaa"
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Volume(L)"

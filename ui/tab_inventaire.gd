@@ -3,8 +3,6 @@ class_name TabInventaire
 
 var inventaire_linked:Inventaire
 
-func _ready():
-	print(anchors_preset)
 
 func _get_drag_data(_pos):
 	return self

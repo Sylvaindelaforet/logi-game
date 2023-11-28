@@ -33,7 +33,6 @@ func display_inventory(inventaire_focus:Inventaire = null):
 	# instantiate window
 	var window:WindowInventaire = window_inventaire.instantiate()
 	self.add_child(window)
-	window.position = get_viewport().get_mouse_position()
 	# fill window
 	window.add_inventaire(inventaire_joueur)
 	if inventaire_focus == null:

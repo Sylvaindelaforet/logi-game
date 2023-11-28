@@ -10,10 +10,11 @@ func debug_print_inventory():
 	for stack in stacks:
 		print(stack.debug_to_string())
 
-# must be either {nombre(int) : masse (float)} either float 
+# must be either {masse (float) : nombre(int)} either float 
 func add_stack(new_stack:Stack):
 	# test documentation
 	"""test documentation"""
+	print(new_stack)
 	for stack in stacks:
 		if stack.equals(new_stack):
 			stack.add_stack(new_stack)
