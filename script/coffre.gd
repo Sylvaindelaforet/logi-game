@@ -1,7 +1,6 @@
 extends StaticBody2D
 class_name Coffre
 
-
 var hud:Hud
 
 var inventaire:Inventaire

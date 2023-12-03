@@ -5,7 +5,3 @@ res://scenes/player.tscn
 res://ui/hud.tscn
 res://ui/window_inventaire.tscn
 res://ui/tab_inventaire.tscn
-res://objets/stack.gd
-res://hud_script.gd
-res://ui/tab_inventaire.gd
-res://script/inventaire.gd
