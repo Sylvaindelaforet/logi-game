@@ -7,3 +7,5 @@ layer = 2
 script = ExtResource("1_ad4k6")
 
 [node name="ClicDroit" type="PopupMenu" parent="."]
+
+[connection signal="focus_exited" from="ClicDroit" to="ClicDroit" method="hide"]

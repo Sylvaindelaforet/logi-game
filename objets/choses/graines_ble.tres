@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Chose" load_steps=2 format=3 uid="uid://6e48u70e31nb"]
-
-[ext_resource type="Script" path="res://objets/chose.gd" id="1_margf"]
-
-[resource]
-script = ExtResource("1_margf")
-nom = "graine de ble"
-denombrable = false
-masse_volumique = -1.0

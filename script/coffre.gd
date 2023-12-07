@@ -5,9 +5,8 @@ var hud:Hud
 
 var inventaire:Inventaire
 
-var options_clic_droit:Array[String] = ["ouvrir", "ajouter pomme", "ajouter grosse pomme"]
-
-var pomme:Chose = preload("res://objets/choses/pomme.tres")
+enum {OUVRIR, AJOUTER_POMME, AJOUTER_GROSSE_POMME}
+var options_clic_droit:Array[String] = ["ouvrir", "ajouter 3 pomme", "ajouter grosse pomme"]
 
 func _ready():
 	inventaire = $Inventaire
@@ -21,12 +20,12 @@ func _input_event(_viewport, event, _shape_idx):
 
 func chosen_action(option:int):
 	match option:
-		0:
+		OUVRIR:
 			hud.display_inventory(inventaire)
-		1:
-			inventaire.add_stack(Stack.new(pomme, {0.145 : 3}))
-		2:
-			inventaire.add_stack(Stack.new(pomme, {0.200 : 1}))
+		AJOUTER_POMME:
+			inventaire.add_stack(Stack.new(Ressources.data["id_pomme"], {0.145 : 3}))
+		AJOUTER_GROSSE_POMME:
+			inventaire.add_stack(Stack.new(Ressources.data["id_pomme"], {0.200 : 1}))
 
 func _on_screen_entered():
 	hud.add_inventaire_visible(inventaire)

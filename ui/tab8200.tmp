@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://o1sjs5n4ybfw"]
+[gd_scene load_steps=3 format=3 uid="uid://o1sjs5n4ybfw"]
 
 [ext_resource type="Script" path="res://ui/tab_inventaire.gd" id="1_30jxn"]
+[ext_resource type="Script" path="res://ui/label_inventaire_ui.gd" id="2_k1m6m"]
 
 [node name="TabInventaire" type="ScrollContainer"]
 anchors_preset = 15
@@ -21,7 +22,8 @@ columns = 3
 [node name="Label" type="Label" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Nom"
+text = "Nom 2"
+script = ExtResource("2_k1m6m")
 
 [node name="Label2" type="Label" parent="GridContainer"]
 layout_mode = 2

@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://2de6xd41lo4k"]
+
+[ext_resource type="Script" path="res://ui/window_inventaire.gd" id="1_h61jk"]
+[ext_resource type="Script" path="res://ui/tab_container.gd" id="2_lbkku"]
+
+[node name="Window_Inventaire" type="Window"]
+position = Vector2i(200, 105)
+size = Vector2i(1000, 500)
+min_size = Vector2i(500, 300)
+max_size = Vector2i(1700, 900)
+script = ExtResource("1_h61jk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.65098, 0.466667, 0.333333, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainerLeft" type="TabContainer" parent="ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+drag_to_rearrange_enabled = true
+script = ExtResource("2_lbkku")
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/HBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Actions"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="ColorRect/HBoxContainer/PanelContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "transfer >"
+
+[node name="Button2" type="Button" parent="ColorRect/HBoxContainer/PanelContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "< transfer"
+
+[node name="TabContainerRight" type="TabContainer" parent="ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+drag_to_rearrange_enabled = true
+script = ExtResource("2_lbkku")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]

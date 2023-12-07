@@ -5,6 +5,9 @@ class_name Tranformations
 @export var nom:String =""
 
 
-
+# id ->
+static var ecraser = {
+	
+}
 
 
