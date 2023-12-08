@@ -46,7 +46,6 @@ func display_inventory(inventaire_focus:Inventaire = null):
 			var invs = inventaires_visible.duplicate()
 			invs.push_front(inventaire_focus)
 			window.add_inventaire_array(invs, false)
-	window.draw_all()
 
 
 func add_inventaire_visible(inv:Inventaire):

@@ -57,13 +57,13 @@ func add_dictionary(dic1:Dictionary, dic2:Dictionary):
 			dic1[key] = dic1[key] + dic2[key]
 
 
-func create_tab() -> Array[String]:
+func get_array_string() -> Array[String]:
 	var array:Array[String] = []
 	for stack in stacks:
-		array = array + stack.create_tab()
+		array = array + stack.get_array_string()
 	return array
 
 
-func get_tab_name():
+func get_inv_name():
 	return get_parent().name + "Inventaire"
 

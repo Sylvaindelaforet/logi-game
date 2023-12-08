@@ -1,48 +1,29 @@
 extends Window
 class_name WindowInventaire
 
-var right_tab_container:Tab
-var left_tab_container:Tab
 
-var inventaires_modifiables:Inventaire
+var right_inventory:InventaireUI
+var left_inventory:InventaireUI
 
-var inventaire_left:Array[Inventaire]
-var inventaire_right:Array[Inventaire]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	left_tab_container = $ColorRect/HBoxContainer/TabContainerLeft
-	right_tab_container = $ColorRect/HBoxContainer/TabContainerRight
+	left_inventory = $ColorRect/HBoxContainer/Inventaire_left
+	right_inventory = $ColorRect/HBoxContainer/Inventaire_right
 
 
-func create_tab(inventaire:Inventaire, left:bool = true):
-	var tab = TabInventaire.new(inventaire)
-	tab.name = inventaire.get_tab_name()
+func add_inventaire(inventaire:Inventaire, left:bool = true):
 	if left:
-		left_tab_container.add_child(tab)
+		left_inventory.add_inventaire(inventaire)
 	else:
-		right_tab_container.add_child(tab)
+		right_inventory.add_inventaire(inventaire)
 
-
-func add_inventaire(inventaire:Inventaire, left:bool=true):
-	if left:
-		inventaire_left.append(inventaire)
-	else:
-		inventaire_right.append(inventaire)
 
 func add_inventaire_array(inventaire_array:Array[Inventaire], left:bool=true):
 	if left:
-		inventaire_left.append_array(inventaire_array)
+		left_inventory.add_inventaire_array(inventaire_array)
 	else:
-		inventaire_right.append_array(inventaire_array)
-
-func draw_all():
-	if inventaire_left!=null:
-		for inv in inventaire_left:
-			create_tab(inv)
-	if inventaire_right!=null:
-		for inv in inventaire_right:
-			create_tab(inv, false)
+		right_inventory.add_inventaire_array(inventaire_array)
 
 
 func _on_close_requested():

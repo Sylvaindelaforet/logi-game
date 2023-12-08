@@ -101,7 +101,7 @@ func same_carac(other_stack:Stack):
 	return true
 
 
-func create_tab() -> Array[String]:
+func get_array_string() -> Array[String]:
 	# return list of ["nom_stack_1, masse_1, volume_1, nom_stack_2, masse_2, ....]
 	var array:Array[String] = []
 	array.append(chose.nom)

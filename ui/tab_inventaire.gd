@@ -1,40 +1,37 @@
 extends ScrollContainer
 class_name TabInventaire
 
-var inventaire_linked:Inventaire
-
 var grid
-
 var script_label
 
-
-func _init(inventaire:Inventaire):
+func _init():
 	script_label = preload("res://ui/label_inventaire_ui.gd")
-	inventaire_linked = inventaire
 	grid = GridContainer.new()
 	add_child(grid)
 	grid.columns = 3
+	size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	size_flags_vertical = Control.SIZE_EXPAND_FILL
 	grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	
+	grid.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_set_background_color()
+
+
+func draw_inventaire(inventaire:Inventaire):
 	_new_label("nom")
 	_new_label("masse")
 	_new_label("volume")
 	
-	var array = inventaire_linked.create_tab()
+	var array = inventaire.get_array_string()
 	for txt in array:
 		_new_label(txt)
+	
+	print("TODO : TabInventaire : finir l'impression de l'invent")
 
 
-func _get_drag_data(_pos):
-	return self
-
-
-func _can_drop_data(_pos, data):
-	return is_instance_of(data, TabInventaire)
-
-
-func _drop_data(_pos, data):
-	data.reparent(get_parent())
+func _set_background_color():
+	var panel_stylebox = StyleBoxFlat.new()
+	panel_stylebox.bg_color = Color(0.4, 0.4, 0.4, 1.0)
+	add_theme_stylebox_override("panel", panel_stylebox)
 
 
 func _new_label(txt:String):
@@ -44,5 +41,16 @@ func _new_label(txt:String):
 	label.set_script(script_label)
 	grid.add_child(label)
 
+
+func _get_drag_data(_pos):
+	print("TabInventaire: TODO deplacer objets")
+
+
+func _can_drop_data(_pos, data):
+	print("TabInventaire: TODO deplacer objets")
+
+
+func _drop_data(_pos, data):
+	print("TabInventaire: TODO deplacer objets ")
 
 
