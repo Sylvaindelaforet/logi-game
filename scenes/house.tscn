@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnlohrf0v47fn"]
+
+[ext_resource type="Texture2D" uid="uid://v0r1o2iaxku3" path="res://batiment.png" id="1_l5yfn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tv3va"]
+size = Vector2(1283, 562)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_nrqqg"]
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="Node2D" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_l5yfn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, 281)
+shape = SubResource("RectangleShape2D_tv3va")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(4, -2)
+navigation_polygon = SubResource("NavigationPolygon_nrqqg")

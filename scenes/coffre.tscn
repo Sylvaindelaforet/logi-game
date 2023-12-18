@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://script/coffre.gd" id="1_8vkiw"]
 [ext_resource type="Texture2D" uid="uid://djnw5003llxcm" path="res://icon.svg" id="1_mwkms"]
-[ext_resource type="PackedScene" uid="uid://dp82dlr2rua5n" path="res://scenes/inventaire.tscn" id="3_q11gq"]
+[ext_resource type="Script" path="res://script/inventaire.gd" id="3_1lddw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_612li"]
 size = Vector2(129, 129)
@@ -19,9 +19,10 @@ shape = SubResource("RectangleShape2D_612li")
 rotation = 3.14159
 texture = ExtResource("1_mwkms")
 
-[node name="Inventaire" parent="." instance=ExtResource("3_q11gq")]
-
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[node name="Inventaire" type="Node" parent="."]
+script = ExtResource("3_1lddw")
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_screen_exited"]
