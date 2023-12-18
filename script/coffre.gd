@@ -1,5 +1,5 @@
-extends StaticBody2D
 class_name Coffre
+extends StaticBody2D
 
 var hud:Hud
 
@@ -13,6 +13,18 @@ func _ready():
 	hud = $/root/Main/HUD
 	if $VisibleOnScreenEnabler2D.is_on_screen():
 		_on_screen_entered()
+
+
+func _deny_region():
+	var nav_region:NavigationRegion2D = $/root/Main/NavRegion
+	var nav_pol:NavigationPolygon = nav_region.navigation_polygon
+	var array = [position + Vector2(-60, -60), position + Vector2(-60, 60),
+		position + Vector2(60, 60), position + Vector2(60, -60)]
+	var outline = PackedVector2Array(array)
+	nav_pol.add_outline(outline)
+	nav_region.bake_navigation_polygon()
+	print("area denied ? : ", outline)
+
 
 func _input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed("clic_droit"):

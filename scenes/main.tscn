@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bt6qnpk42agfx"]
+[gd_scene load_steps=10 format=3 uid="uid://bt6qnpk42agfx"]
 
 [ext_resource type="Texture2D" uid="uid://dpsg734onljsa" path="res://asset/tiles_v1.png" id="1_03kmq"]
 [ext_resource type="PackedScene" uid="uid://dgevsb2hcuk3b" path="res://scenes/coffre.tscn" id="1_g27gp"]
 [ext_resource type="PackedScene" uid="uid://6rx6j31ng6sc" path="res://scenes/player.tscn" id="2_pxqga"]
+[ext_resource type="PackedScene" uid="uid://k4eshxy0fdka" path="res://scenes/npc.tscn" id="4_aioml"]
+[ext_resource type="PackedScene" uid="uid://dnlohrf0v47fn" path="res://scenes/house.tscn" id="5_inrba"]
 [ext_resource type="PackedScene" uid="uid://d16jlic470g2h" path="res://ui/hud.tscn" id="8_x1fet"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nd1jo"]
@@ -14,25 +16,67 @@ texture_region_size = Vector2i(256, 256)
 tile_size = Vector2i(256, 256)
 sources/0 = SubResource("TileSetAtlasSource_nd1jo")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_fqttg"]
+vertices = PackedVector2Array(3432, -1353, 4111, -1255, 3007, -1255, 3094, -1292, 3243, -1353, 2905, -1292, 3094, -1482, 3243, -1543, 4112, -1778, 3432, -1543, 2378, -1778, 2905, -1482, 2378, -546, 4109, -626, 4109, -538, 3007, -626)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 3, 2), PackedInt32Array(4, 3, 6, 7), PackedInt32Array(8, 1, 0, 9), PackedInt32Array(10, 8, 9, 7), PackedInt32Array(10, 7, 6, 11), PackedInt32Array(12, 10, 11, 5), PackedInt32Array(13, 14, 12, 15), PackedInt32Array(15, 12, 5, 2)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2348.23, -516.823, 2348.23, -1808.37, 4141.59, -1808.37, 4138.6, -507.72)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 30.0
+
 [node name="Main" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
+z_index = -1
 scale = Vector2(0.997616, 1)
 tile_set = SubResource("TileSet_8gpwa")
 format = 2
 layer_0/tile_data = PackedInt32Array(65536, 0, 0, 65537, 0, 0, 131073, 0, 0, 131072, 0, 0, 196607, 0, 0, 131071, 0, 0, 65535, 0, 0, -1, 0, 0, 131074, 0, 0, 65538, 0, 0, 65539, 0, 0, 3, 0, 0, -65533, 0, 0, -65534, 0, 0, -65535, 0, 0, -65536, 0, 0, -2, 0, 0, 65534, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 131070, 0, 0, 196606, 0, 0, 131075, 0, 0, 131076, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196612, 0, 0, 65540, 0, 0, 4, 0, 0, -65532, 0, 0)
 
-[node name="Coffre" parent="." instance=ExtResource("1_g27gp")]
-position = Vector2(137, 161)
+[node name="NavRegion" type="NavigationRegion2D" parent="."]
+position = Vector2(-2868, 1533)
+scale = Vector2(1.00203, 0.988733)
+navigation_polygon = SubResource("NavigationPolygon_fqttg")
 
-[node name="Coffre2" parent="." instance=ExtResource("1_g27gp")]
-position = Vector2(476, 101)
+[node name="coffres" type="Node2D" parent="NavRegion"]
+
+[node name="Coffre2" parent="NavRegion/coffres" instance=ExtResource("1_g27gp")]
+position = Vector2(3337.23, -1448.32)
+scale = Vector2(0.997975, 1.0114)
+
+[node name="Coffre" parent="NavRegion/coffres" instance=ExtResource("1_g27gp")]
+position = Vector2(2998.91, -1387.63)
+scale = Vector2(0.997974, 1.0114)
+
+[node name="Houses" type="Node2D" parent="NavRegion"]
+position = Vector2(2862.19, -1550.47)
+scale = Vector2(0.997974, 1.0114)
+
+[node name="House0" parent="NavRegion/Houses" instance=ExtResource("5_inrba")]
+position = Vector2(814, 322)
+
+[node name="NPCS" type="Node2D" parent="."]
+
+[node name="NPC" parent="NPCS" instance=ExtResource("4_aioml")]
+position = Vector2(-407, 319)
+
+[node name="NPC2" parent="NPCS" instance=ExtResource("4_aioml")]
+position = Vector2(-186, -22)
+
+[node name="NPC3" parent="NPCS" instance=ExtResource("4_aioml")]
+position = Vector2(38, 408)
+
+[node name="NPC4" parent="NPCS" instance=ExtResource("4_aioml")]
+position = Vector2(-372, 86)
+
+[node name="NPC5" parent="NPCS" instance=ExtResource("4_aioml")]
+position = Vector2(-170, 208)
 
 [node name="Player" parent="." instance=ExtResource("2_pxqga")]
-position = Vector2(432, 352)
+position = Vector2(845, 878)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 visibility_layer = 2
+metadata/_edit_lock_ = true
 
 [node name="HUD" parent="." instance=ExtResource("8_x1fet")]
 layer = 1

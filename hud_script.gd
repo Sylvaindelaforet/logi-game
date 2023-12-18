@@ -1,10 +1,10 @@
-extends CanvasLayer
 class_name Hud
+extends CanvasLayer
 
 signal popup_menu_asked(options:Array[String], demandeur)
 
 var clic_droit:PopupMenu
-var quémandeur
+var quemandeur
 var window_inventaire:PackedScene
 
 var inventaire_joueur:Inventaire
@@ -23,16 +23,16 @@ func display_popup_menu(options:Array[String], demandeur):
 	for option in options:
 		clic_droit.add_item(option)
 	clic_droit.visible = true
-	quémandeur = demandeur
+	quemandeur = demandeur
 
 func send_response(option):
-	quémandeur.chosen_action(option)
-	quémandeur = null
+	quemandeur.chosen_action(option)
+	quemandeur = null
 
 func display_inventory(inventaire_focus:Inventaire = null):
 	# instantiate window
 	var window:WindowInventaire = window_inventaire.instantiate()
-	self.add_child(window)
+	add_child(window)
 	# fill window
 	window.add_inventaire(inventaire_joueur)
 	if inventaire_focus == null:

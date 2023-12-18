@@ -1,5 +1,5 @@
-extends Window
 class_name WindowInventaire
+extends Window
 
 
 var right_inventory:InventaireUI
@@ -10,6 +10,8 @@ var left_inventory:InventaireUI
 func _ready():
 	left_inventory = $ColorRect/HBoxContainer/Inventaire_left
 	right_inventory = $ColorRect/HBoxContainer/Inventaire_right
+	print(left_inventory)
+
 
 
 func add_inventaire(inventaire:Inventaire, left:bool = true):

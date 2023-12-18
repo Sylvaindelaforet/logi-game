@@ -1,5 +1,5 @@
-extends Node
 class_name Inventaire
+extends Node
 
 # pour les masses des objets différents, on a la possibilité d'avoir 
 # il ne faut pas un grand nombre de masses différentes pour  les choses
@@ -21,8 +21,10 @@ func add_stack(new_stack:Stack):
 	for i_stack in stacks:
 		if i_stack.same_carac(new_stack):
 			i_stack.merge_stack(new_stack)
+			inventaire_modified.emit()
 			return
 	stacks.append(new_stack)
+	inventaire_modified.emit()
 
 
 func has_stack(stack:Stack):
@@ -37,7 +39,9 @@ func remove_stack(stack:Stack) -> bool:
 		if i_stack.same_carac(stack):
 			if i_stack.contain_stack(stack):
 				i_stack.remove_stack(stack)
+				inventaire_modified.emit()
 				return true
+	inventaire_modified.emit()
 	return false
 
 
