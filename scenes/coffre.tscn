@@ -1,23 +1,24 @@
 [gd_scene load_steps=5 format=3 uid="uid://dgevsb2hcuk3b"]
 
 [ext_resource type="Script" path="res://script/coffre.gd" id="1_8vkiw"]
-[ext_resource type="Texture2D" uid="uid://djnw5003llxcm" path="res://icon.svg" id="1_mwkms"]
+[ext_resource type="Texture2D" uid="uid://kongpiysxvox" path="res://asset/COFFRE.png" id="2_6kv38"]
 [ext_resource type="Script" path="res://script/inventaire.gd" id="3_1lddw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_612li"]
-size = Vector2(129, 129)
+size = Vector2(146, 143)
 
 [node name="Coffre" type="StaticBody2D"]
 input_pickable = true
 script = ExtResource("1_8vkiw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.5)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_612li")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 3.14159
-texture = ExtResource("1_mwkms")
+position = Vector2(2, 1)
+scale = Vector2(0.2, 0.225)
+texture = ExtResource("2_6kv38")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 

@@ -17,8 +17,8 @@ tile_size = Vector2i(256, 256)
 sources/0 = SubResource("TileSetAtlasSource_nd1jo")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_fqttg"]
-vertices = PackedVector2Array(3102, -1286, 3229, -1274, 2421, -39, 2421, -1279, 2896, -1286, 2421, 589, 8972, 2554, -1687, 2562, 1081, 589, 658, 588, -683, 588, -683, -40, -1690, -3354, -700, -1332, 4072, -1265, 4072, -1469, 8950, -3325, 3866, -1469, 3792, -1478, 2421, -1907, 3866, -1265, 3792, -1274, 3587, -1274, 3435, -1274, 1081, -1907, 1081, -1279, 658, -40, 641, -1332, 641, -1961, 3229, -1478, 3102, -1490, 2896, -1490, 1081, -39, 3587, -1478, 3435, -1478, -700, -1961)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(9, 8, 7, 10), PackedInt32Array(11, 10, 7, 12, 13), PackedInt32Array(14, 15, 16, 6), PackedInt32Array(12, 16, 15, 17, 18, 19), PackedInt32Array(14, 6, 5, 2, 20), PackedInt32Array(21, 20, 2, 22), PackedInt32Array(23, 22, 2), PackedInt32Array(1, 23, 2), PackedInt32Array(17, 20, 21, 18), PackedInt32Array(24, 25, 26, 27, 28), PackedInt32Array(29, 1, 0, 30), PackedInt32Array(4, 3, 19, 31), PackedInt32Array(32, 8, 9, 26), PackedInt32Array(33, 22, 23, 34), PackedInt32Array(25, 3, 2, 32, 26), PackedInt32Array(27, 26, 11, 13), PackedInt32Array(35, 13, 12), PackedInt32Array(28, 35, 12), PackedInt32Array(30, 31, 19), PackedInt32Array(29, 30, 19, 34), PackedInt32Array(24, 28, 12, 19), PackedInt32Array(19, 18, 33), PackedInt32Array(19, 33, 34)])
+vertices = PackedVector2Array(2421, -1279, 3222, -1288, 3411, -1288, 2421, -39, 3094, -1292, 2905, -1292, 2421, 589, 8972, 2554, -1687, 2562, 1081, 589, 658, 588, -683, 588, -683, -40, -1690, -3354, -700, -1332, 3411, -1478, 8950, -3325, 1081, -1907, 1081, -1279, 658, -40, 641, -1332, 641, -1961, 3222, -1478, 3094, -1482, 2421, -1907, 2905, -1482, 1081, -39, -700, -1961)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 9, 8, 11), PackedInt32Array(12, 11, 8, 13, 14), PackedInt32Array(2, 15, 16, 7), PackedInt32Array(2, 7, 6, 3), PackedInt32Array(17, 18, 19, 20, 21), PackedInt32Array(22, 1, 4, 23), PackedInt32Array(5, 0, 24, 25), PackedInt32Array(26, 9, 10, 19), PackedInt32Array(18, 0, 3, 26, 19), PackedInt32Array(20, 19, 12, 14), PackedInt32Array(27, 14, 13), PackedInt32Array(27, 13, 16, 21), PackedInt32Array(17, 21, 16, 24), PackedInt32Array(24, 16, 15, 22, 23), PackedInt32Array(24, 23, 25)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1716.52, 2593.22, -1720.51, -3385.14, 8979.77, -3354.8, 9002.72, 2584.12)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 30.0
@@ -73,6 +73,7 @@ position = Vector2(-1116, 1524)
 
 [node name="NPCS" type="Node2D" parent="."]
 position = Vector2(0.000244141, -0.00012207)
+scale = Vector2(1, 1)
 
 [node name="NPC" parent="NPCS" node_paths=PackedStringArray("coffre") instance=ExtResource("4_aioml")]
 position = Vector2(-1119, 343)
@@ -91,7 +92,7 @@ position = Vector2(-2898, 2184)
 coffre = NodePath("../../NavRegion/coffres/Coffre4")
 
 [node name="Player" parent="." instance=ExtResource("2_pxqga")]
-position = Vector2(-1767, 605)
+position = Vector2(-1930, 831)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 visibility_layer = 2

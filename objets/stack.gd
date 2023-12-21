@@ -13,7 +13,9 @@ var modified_caracteristiques:Dictionary
 
 
 # quantite {masse : nombre} ou float
-func _init(p_chose:Chose, quantite):
+func _init(p_chose:Chose = null, quantite = null):
+	if p_chose == null or quantite == null:
+		push_error("init gone wrong for stack")
 	chose = p_chose
 	if chose.is_denombrable:
 		for key in quantite.keys():

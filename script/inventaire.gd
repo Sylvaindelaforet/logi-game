@@ -33,7 +33,7 @@ func has_stack(stack:Stack):
 			return i_stack.contain_stack(stack)
 	stacks.append(stack)
 
-
+# return true si changement effectué, false si impossible
 func remove_stack(stack:Stack) -> bool:
 	for i_stack in stacks:
 		if i_stack.same_carac(stack):
@@ -41,7 +41,6 @@ func remove_stack(stack:Stack) -> bool:
 				i_stack.remove_stack(stack)
 				inventaire_modified.emit()
 				return true
-	inventaire_modified.emit()
 	return false
 
 

@@ -4,7 +4,7 @@ extends VBoxContainer
 # Node Root pour l'affichage d'un inventaire. Elle possède une arboserscence telle que :
 
 # InventaireUI (extends Vbox)
-# | - TabBarUI (extends Hbox) trie les onglets
+# | - TabBarUI (extends Hbox) trie les onglets TODO ajouter un horizontal scroll ?
 #   | - TabButton (extends PanelContainer) homebrew bouton onglets
 #   | - TabButton (extends PanelContainer) homebrew bouton onglets
 #   | - ...
