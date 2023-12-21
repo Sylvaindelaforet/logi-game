@@ -1,16 +1,3 @@
 res://scenes/npc.tscn
 res://script/coffre.gd
-res://objets/stack.gd
-res://script/tasks_test.gd
-res://objets/ressources.gd
-res://script/player.gd
-res://scenes/main.tscn
-res://scenes/coffre.tscn
-res://ui/window_inventaire.tscn
-res://ui/hud.tscn
-res://scenes/inventaire.tscn
-res://scenes/house.tscn
-res://scenes/player.tscn
 res://script/npc.gd
-res://ui/inventoryUI/inventaire_ui.gd
-res://script/inventaire.gd

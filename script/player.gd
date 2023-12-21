@@ -14,7 +14,7 @@ func _ready():
 	inventaire = $InventairePlayer
 	hud.add_player_inventaire(inventaire)
 	running = 1.0
-	TasksTests.super_test()
+
 
 
 func _physics_process(_delta):

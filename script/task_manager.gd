@@ -1,12 +1,9 @@
 extends Object
-class_name TasksTests
-
+class_name TaskManager
 
 # a task is a list of action
-# [priority €[0, 9], liste d'action ?, task_ensuite]
-
+# [priority €[0, 9], task_tree see below]
 var task_list
-
 
 # actions possibles NPC :
 # - déplacer à position finale
@@ -39,6 +36,18 @@ static var task_npc_nourrir = [
 		]
 	]
 
+
+# add task
+func add_task(task):
+	var temporary_list = []
+	while task_list != []:
+		if task_list[0][0] <= task[0]:
+			temporary_list.append(task)
+			task_list = temporary_list + task_list
+			return
+		temporary_list.append(task_list.pop_front())
+	temporary_list.append(task)
+	task_list = temporary_list
 
 
 

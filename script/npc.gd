@@ -12,7 +12,7 @@ var movement_speed: float = 300.0
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
 
-var task
+var task_manager:TaskManager
 
 
 func _ready():
@@ -21,7 +21,7 @@ func _ready():
 	navigation_agent.path_desired_distance = 4.0
 	navigation_agent.target_desired_distance = 4.0
 	position_initiale = position
-	task = TasksTests.task_npc_nourrir
+
 
 
 func _unhandled_input(event):
@@ -50,26 +50,6 @@ func go_to_coffre():
 
 func go_back():
 	set_movement_target(position_initiale)
-
-
-
-func read_task():
-	match task[0]:
-		TasksTests.MOVE_TO:
-			pass
-		TasksTests.EAT:
-			pass
-		TasksTests.CHECK_INVENTORY:
-			pass
-
-
-
-
-
-
-
-
-
 
 
 
