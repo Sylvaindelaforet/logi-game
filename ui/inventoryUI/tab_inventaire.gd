@@ -17,9 +17,11 @@ func draw_inventaire(inventaire:Inventaire):
 	_new_label("masse")
 	_new_label("volume")
 	
-	var array = inventaire.get_array_string()
-	for txt in array:
-		_new_label(txt)
+	var array_txt = inventaire.get_array_string()
+	var array_stack = inventaire.get_array_stack()
+	var i = 0
+	for txt in array_txt:
+		_new_label(txt, array_stack[0])
 
 
 func _set_background_color():
@@ -28,10 +30,12 @@ func _set_background_color():
 	add_theme_stylebox_override("panel", panel_stylebox)
 
 
-func _new_label(txt:String):
+func _new_label(txt:String, p_stack:Stack = null):
 	var label:LabelInvTab = LabelInvTab.new()
 	label.text = txt
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	if p_stack !=null:
+		label.stack = p_stack
 	grid.add_child(label)
 
 

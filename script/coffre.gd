@@ -35,9 +35,9 @@ func chosen_action(option:int):
 		OUVRIR:
 			hud.display_inventory(inventaire)
 		AJOUTER_POMME:
-			inventaire.add_stack(Stack.new(Ressources.data["id_pomme"], {0.145 : 3}))
+			inventaire.add_stack(Stack.new(Ressources.Choses[Ressources.ID.POMME], {0.145 : 3}))
 		AJOUTER_GROSSE_POMME:
-			inventaire.add_stack(Stack.new(Ressources.data["id_pomme"], {0.200 : 1}))
+			inventaire.add_stack(Stack.new(Ressources.Choses[Ressources.ID.POMME], {0.200 : 1}))
 
 func _on_screen_entered():
 	hud.add_inventaire_visible(inventaire)

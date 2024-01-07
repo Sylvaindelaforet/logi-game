@@ -4,10 +4,12 @@ class_name Tranformations
 #le nom de la transformation
 @export var nom:String =""
 
-
-# id ->
-static var ecraser = {
-	
+enum {
+	MANGER,
+	BOIRE,
+	BRULER,
+	FONDRE,
+	BROYER,
+	PLANTER
 }
-
 

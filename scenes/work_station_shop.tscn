@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://8k16nge3dbsi"]
+
+[ext_resource type="Texture2D" uid="uid://gblq0wtqiiya" path="res://workshop.png" id="1_g8xfw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3labm"]
+size = Vector2(473, 361)
+
+[node name="WorkStationShop" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_g8xfw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_3labm")
+disabled = true

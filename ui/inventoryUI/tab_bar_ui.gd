@@ -40,6 +40,9 @@ func remove_button(button:TabButton):
 			get_parent().clear_inventaire()
 
 
+func get_current_inv():
+	return button_chosen.inventaire
+
 
 func _create_button(inv:Inventaire, selected:bool = false):
 	var tab_button = TabButton.new(inv, selected)

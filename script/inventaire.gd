@@ -34,22 +34,47 @@ func has_stack(stack:Stack):
 	stacks.append(stack)
 
 # return true si changement effectué, false si impossible
-func remove_stack(stack:Stack) -> bool:
+func remove_stack(stack:Stack):
 	for i_stack in stacks:
 		if i_stack.same_carac(stack):
 			if i_stack.contain_stack(stack):
 				i_stack.remove_stack(stack)
 				inventaire_modified.emit()
-				return true
-	return false
+				return
+	push_error("change impossible")
+
+
+func erase_stack(stack:Stack):
+	stacks.erase(stack)
+	inventaire_modified.emit()
+	return
 
 
 func send(stack:Stack, other_inv:Inventaire):
-	# TODO remove a stack from stacks
 	if has_stack(stack):
 		remove_stack(stack)
 		other_inv.add_stack(stack)
 	push_error("un item non possédé a essayé d'être envoyé")
+
+
+# returns list of stacks compatible 
+func has_compatible(caracteristique):
+	var list_of_stacks = []
+	for stack in stacks:
+		if stack.compatible(caracteristique):
+			list_of_stacks.append(stack)
+	return list_of_stacks
+
+
+func has_thing(chose):
+	if typeof(chose) == TYPE_ARRAY:
+		print_debug("TODO for chose array")
+
+	var list_of_stacks = []
+	for stack in stacks:
+		if stack.chose == chose:
+			list_of_stacks.append(stack)
+	return list_of_stacks
 
 
 func add_dictionary(dic1:Dictionary, dic2:Dictionary):
@@ -65,6 +90,10 @@ func get_array_string() -> Array[String]:
 	for stack in stacks:
 		array = array + stack.get_array_string()
 	return array
+
+
+func get_array_stack() -> Array[Stack]:
+	return stacks
 
 
 func get_inv_name():

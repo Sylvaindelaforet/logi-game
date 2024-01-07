@@ -3,7 +3,7 @@ class_name Stack
 
 var chose:Chose
 
-# si denombrarble : {float : int}
+# si denombrable : {float : int}
 var chose_quantities:Dictionary
 
 var masse_totale:float
@@ -63,6 +63,67 @@ func remove_stack(stack:Stack):
 				push_error("tried to remove from a stack smthng that doesn't exist")
 	else:
 		masse_totale = masse_totale - stack.masse_totale
+	
+
+# renvoie true si les 2 stacks sont les mêmes choses avec les mêmes caractéristiques modifiées
+func same_carac(other_stack:Stack):
+	if other_stack.chose.id != chose.id:
+		return false
+	if other_stack.modified_caracteristiques.is_empty() and modified_caracteristiques.is_empty():
+		return true
+	for key in other_stack.modified_caracteristiques.keys():
+		if not modified_caracteristiques.has[key]:
+			return false
+		if modified_caracteristiques[key] != other_stack.modified_caracteristiques[key]:
+			return false
+	return true
+
+
+# caracteristics = [[Carac_id, has], [Carac_id, SUP | INF, EQUAL , value],
+# [Carac_id, between , [value1 value 2]]
+# or caracteristics = [id_chose_1, id_chose_2, id_chose_3, ...]
+func compatible(caracteristics):
+	
+	var temp_dictionary = chose.default_caracteristics.duplicate()
+	temp_dictionary.merge(modified_caracteristiques, true)
+	
+	for elt in caracteristics:
+		if typeof(elt) != TYPE_ARRAY:
+			if chose.id == elt:
+				return true
+		
+		var carac_id = elt[0]
+		var operator = elt[1]
+		
+		if not chose.default_caracteristics.has(carac_id):
+			return false
+		
+		match operator:
+			Ressources.CARAC_OPE.HAS:
+				pass
+			Ressources.CARAC_OPE.SUPERIOR:
+				if temp_dictionary[carac_id] < elt[2]:
+					return false
+			Ressources.CARAC_OPE.INFERIOR:
+				if temp_dictionary[carac_id] > elt[2]:
+					return false
+			Ressources.CARAC_OPE.BETWEEN:
+				var lower_bound = elt[3][0]
+				var higher_bound = elt[3][1]
+				if temp_dictionary[carac_id] < lower_bound and temp_dictionary[carac_id] > higher_bound:
+					return false
+			Ressources.CARAC_OPE.EQUAL:
+				if temp_dictionary[carac_id] != elt[2]:
+					return false
+	
+	return true
+
+
+
+
+
+
+## utilitaires
 
 
 func debug_print_stack():
@@ -89,18 +150,6 @@ func f_to_string():
 			string = string + "\n    carac : " + String.num(key) + " value : " + modified_caracteristiques[key].to_string()
 	return string
 
-# renvoie true si les 2 stacks sont les mêmes choses avec les mêmes caractéristiques modifiées
-func same_carac(other_stack:Stack):
-	if other_stack.chose.id != chose.id:
-		return false
-	if other_stack.modified_caracteristiques.is_empty() and modified_caracteristiques.is_empty():
-		return true
-	for key in other_stack.modified_caracteristiques.keys():
-		if not modified_caracteristiques.has[key]:
-			return false
-		if modified_caracteristiques[key] != other_stack.modified_caracteristiques[key]:
-			return false
-	return true
 
 
 func get_array_string() -> Array[String]:

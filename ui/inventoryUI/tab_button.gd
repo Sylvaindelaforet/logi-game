@@ -34,7 +34,7 @@ func button_is_chosen():
 func _on_inventaire_modified():
 	# TODO enlever get_parent().get_parent()
 	if button_chosen:
-		parent_ui = get_parent()
+		parent_ui = get_parent().get_parent()
 		parent_ui.draw_inventaire(inventaire)
 
 

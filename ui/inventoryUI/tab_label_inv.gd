@@ -1,10 +1,11 @@
 class_name LabelInvTab
 extends Label
 
-enum {OUVRIR, AJOUTER_POMME, AJOUTER_GROSSE_POMME}
-var options_clic_droit:Array[String] = ["action 1", "action 2", "action 3"]
+enum {TOUT_PRENDRE, PRENDRE1}
+var options_clic_droit:Array[String] = ["tout prendre", "prendre 1"]
 
 var hud:Hud
+var stack:Stack
 
 func _ready():
 	hud = $/root/Main/HUD
@@ -16,12 +17,13 @@ func _gui_input(event):
 
 func chosen_action(option:int):
 	match option:
-		OUVRIR:
-			print("action 1")
-		AJOUTER_POMME:
+		TOUT_PRENDRE:
+			var inv = get_parent().get_parent().get_parent().get_current_inv()
+			inv.erase_stack(stack)
+			$/root/Main/Player.get_inventaire().add_stack(stack)
+		PRENDRE1:
 			print("action 2")
-		AJOUTER_GROSSE_POMME:
-			print("action 3")
+
 
 
 

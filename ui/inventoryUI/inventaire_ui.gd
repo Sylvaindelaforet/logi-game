@@ -2,10 +2,11 @@ class_name InventaireUI
 extends VBoxContainer
 
 # Node Root pour l'affichage d'un inventaire. Elle possède une arboserscence telle que :
+# se met dans le hbox de la fenêtre, et affiche un inventaire
 
 # InventaireUI (extends Vbox)
-# | - TabBarUI (extends Hbox) trie les onglets TODO ajouter un horizontal scroll ?
-#   | - TabButton (extends PanelContainer) homebrew bouton onglets
+# | - TabBarUI (extends Hbox) trie les onglets TODO ajouter un horizontal scroll ?	
+#   | - TabButton (extends PanelContainer) homebrew bouton onglets possède poignet de l'inventaire
 #   | - TabButton (extends PanelContainer) homebrew bouton onglets
 #   | - ...
 # | - TabInventaire (extends ScrollContainer) container pour y draw les inventaires
@@ -35,6 +36,10 @@ func _init():
 #	add_child(tab_bar)
 #	tab_inventaire = TabInventaire.new()
 #	add_child(tab_inventaire)
+
+
+func get_current_inv():
+	return tab_bar.get_current_inv()
 
 
 func add_inventaire(inventaire:Inventaire):
