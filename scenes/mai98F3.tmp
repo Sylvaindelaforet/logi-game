@@ -82,18 +82,6 @@ position = Vector2(0.000244141, -0.00012207)
 position = Vector2(1814, -1124)
 coffre = NodePath("../../NavRegion/coffres/Coffre")
 
-[node name="NPC2" parent="NPCS" instance=ExtResource("4_aioml")]
-position = Vector2(2084, -876)
-
-[node name="NPC3" parent="NPCS" instance=ExtResource("4_aioml")]
-position = Vector2(1547, -932)
-
-[node name="NPC4" parent="NPCS" instance=ExtResource("4_aioml")]
-position = Vector2(1695, -933)
-
-[node name="NPC5" parent="NPCS" instance=ExtResource("4_aioml")]
-position = Vector2(1869, -890)
-
 [node name="Player" parent="." instance=ExtResource("2_pxqga")]
 position = Vector2(2508, -990)
 

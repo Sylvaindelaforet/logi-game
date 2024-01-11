@@ -20,3 +20,6 @@ texture = ExtResource("2_jm2wv")
 
 [node name="InventairePlayer" type="Node" parent="."]
 script = ExtResource("3_e54hw")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 30.0

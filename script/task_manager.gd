@@ -33,7 +33,7 @@ var _npc_body:NPC
 enum {MOVE_TO, MOVE_TO_CHEST, EAT, CHECK_INVENTORY = CONDITIONAL_MIN_ID}
 
 
-static var une_pomme = Stack.new(Ressources.Choses[Ressources.ID.POMME], {0.145: 1})
+#static var une_pomme = Stack.new(Ressources.Choses[Ressources.ID.POMME], {0.145: 1})
 
 # un arbre de noeud c'est : [Action ID, [parameters], following action ]
 # pour conditional : [Action ID, [parameters], [followings ations] ]
@@ -41,7 +41,7 @@ static var task_npc_nourrir = [
 	CHECK_INVENTORY, ["self", [Ressources.ID.POMME]],
 		[
 			[EAT, ["self", [Ressources.ID.POMME]], []],
-			[CHECK_INVENTORY, ["at_home", une_pomme], [[],[]]]
+			[CHECK_INVENTORY, ["at_home", null], [[],[]]]
 		]
 	]
 

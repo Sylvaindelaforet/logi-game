@@ -1,72 +1,76 @@
 extends Resource
 class_name Stack
 
+# class d'un stack
+# un stack regroupe des chose avec les mêmes caractéristiques
+# ainsi que les items dénombrables de même masse
+
 var chose:Chose
 
-# si denombrable : {float : int}
-var chose_quantities:Dictionary
+# si denombrable :
+var nombre:int
+var masse_individuelle:float
 
-var masse_totale:float
+var masse_stack:float
 
 # key carac -> valeur carac
 var modified_caracteristiques:Dictionary
 
 
 # quantite {masse : nombre} ou float
-func _init(p_chose:Chose = null, quantite = null):
-	if p_chose == null or quantite == null:
+func _init(p_chose:Chose, p_masse:float, p_nombre = 0):
+	if p_nombre == 0 and p_chose.is_denombrable:
 		push_error("init gone wrong for stack")
+	
 	chose = p_chose
 	if chose.is_denombrable:
-		for key in quantite.keys():
-			masse_totale = masse_totale + key * quantite[key]
-			if chose_quantities.has(key):
-				chose_quantities[key] = chose_quantities[key] + quantite[key]
-			else:
-				chose_quantities[key] = quantite[key]
+		masse_individuelle = p_masse
+		nombre = p_nombre
+		masse_stack = p_masse * p_nombre
 	else:
-		masse_totale = masse_totale + quantite
+		masse_stack = p_masse
 
 
 func merge_stack(stack:Stack):
 	if stack.chose.is_denombrable:
-		for key in stack.chose_quantities.keys():
-			masse_totale = masse_totale + key * stack.chose_quantities[key]
-			if self.chose_quantities.has(key):
-				chose_quantities[key] = chose_quantities[key] + stack.chose_quantities[key]
-			else:
-				chose_quantities[key] = stack.chose_quantities[key]
+		nombre += stack.nombre
+		masse_stack += stack.masse_stack
 	else:
-		masse_totale = masse_totale + stack.masse_totale
-
-func contain_stack(stack:Stack):
-	if stack.chose.is_denombrable:
-		for key in stack.chose_quantities.keys():
-			if not chose_quantities.has(key):
-				return false
-			if chose_quantities[key] < stack.chose_quantities[key]:
-				return false
-	else:
-		return masse_totale >= stack.masse_totale
+		masse_stack += stack.masse_stack
 
 
-func remove_stack(stack:Stack):
-	if stack.chose.is_denombrable:
-		for key in stack.chose_quantities.keys():
-			masse_totale = masse_totale - key * stack.chose_quantities[key]
-			if chose_quantities.has(key):
-				if chose_quantities[key] - stack.chose_quantities[key] == 0:
-					chose_quantities.erase(key)
-				else:
-					chose_quantities[key] = chose_quantities[key] - stack.chose_quantities[key]
-			else:
-				push_error("tried to remove from a stack smthng that doesn't exist")
+# quantite float or int for denombrable0
+func contains_enough(quantite, denombrable:bool):
+	if denombrable:
+		if quantite is int:
+			return nombre >= quantite
+		else:
+			return masse_stack >= quantite
 	else:
-		masse_totale = masse_totale - stack.masse_totale
-	
+		return masse_stack >= masse_stack
+
+
+func remove(quantite):
+	if chose.is_denombrable:
+		if not quantite is int:
+			push_error("can't retirer denombrable")
+		nombre -= quantite
+		masse_stack = masse_individuelle * nombre
+	else:
+		masse_stack -= quantite
+
+
+func get_quantite():
+	if chose.is_denombrable:
+		return nombre
+	else:
+		return masse_stack
+
 
 # renvoie true si les 2 stacks sont les mêmes choses avec les mêmes caractéristiques modifiées
 func same_carac(other_stack:Stack):
+	if masse_individuelle != other_stack.masse_individuelle:
+		return false
 	if other_stack.chose.id != chose.id:
 		return false
 	if other_stack.modified_caracteristiques.is_empty() and modified_caracteristiques.is_empty():
@@ -79,7 +83,11 @@ func same_carac(other_stack:Stack):
 	return true
 
 
-# caracteristics = [[Carac_id, has], [Carac_id, SUP | INF, EQUAL , value],
+
+
+# renvoie vrai si la valeur de la caractéristique est bonne selon caracteristics
+# ça a l'air un peu foireux à refaire ?
+# caracteristics = [[Carac_id, has], [Carac_id, SUP | INF | EQUAL , value],
 # [Carac_id, between , [value1 value 2]]
 # or caracteristics = [id_chose_1, id_chose_2, id_chose_3, ...]
 func compatible(caracteristics):
@@ -119,6 +127,36 @@ func compatible(caracteristics):
 	return true
 
 
+func get_id() -> int:
+	return chose.id
+
+
+func volume_stack():
+	return masse_stack * chose.masse_volumique
+
+
+func get_carac():
+	var caracteristics = chose.default_caracteristics.duplicate()
+	caracteristics.merge(modified_caracteristiques, true)
+	return caracteristics
+
+
+
+#
+#func remove_stack(stack:Stack):
+	#if stack.chose.is_denombrable:
+		#for key in stack.chose_quantities.keys():
+			#masse_totale = masse_totale - key * stack.chose_quantities[key]
+			#if chose_quantities.has(key):
+				#if chose_quantities[key] - stack.chose_quantities[key] == 0:
+					#chose_quantities.erase(key)
+				#else:
+					#chose_quantities[key] = chose_quantities[key] - stack.chose_quantities[key]
+			#else:
+				#push_error("tried to remove from a stack smthng that doesn't exist")
+	#else:
+		#masse_totale = masse_totale - stack.masse_totale
+
 
 
 
@@ -126,44 +164,41 @@ func compatible(caracteristics):
 ## utilitaires
 
 
-func debug_print_stack():
-	if chose.is_denombrable:
-		print(chose.nom)
-		for key in chose_quantities.keys():
-			print("    masse : ", key, " x", chose_quantities[key])
-	else:
-		print(chose.nom, " : ", masse_totale)
-	if not modified_caracteristiques.is_empty():
-		for key in modified_caracteristiques.keys():
-			print("    carac : ", key, " value : ", modified_caracteristiques[key])
-
-func f_to_string():
-	var string: String = ""
-	if chose.is_denombrable:
-		string = chose.nom
-		for key in chose_quantities.keys():
-			string = string + "\n    masse : " + String.num(key) + " x" + String.num(chose_quantities[key])
-	else:
-		string = chose.nom + " : " + String.num(masse_totale)
-	if not modified_caracteristiques.is_empty():
-		for key in modified_caracteristiques.keys():
-			string = string + "\n    carac : " + String.num(key) + " value : " + modified_caracteristiques[key].to_string()
-	return string
+#func debug_print_stack():
+	#if chose.is_denombrable:
+		#print(chose.nom)
+		#for key in chose_quantities.keys():
+			#print("    masse : ", key, " x", chose_quantities[key])
+	#else:
+		#print(chose.nom, " : ", masse_totale)
+	#if not modified_caracteristiques.is_empty():
+		#for key in modified_caracteristiques.keys():
+			#print("    carac : ", key, " value : ", modified_caracteristiques[key])
+#
+#func f_to_string():
+	#var string: String = ""
+	#if chose.is_denombrable:
+		#string = chose.nom
+		#for key in chose_quantities.keys():
+			#string = string + "\n    masse : " + String.num(key) + " x" + String.num(chose_quantities[key])
+	#else:
+		#string = chose.nom + " : " + String.num(masse_totale)
+	#if not modified_caracteristiques.is_empty():
+		#for key in modified_caracteristiques.keys():
+			#string = string + "\n    carac : " + String.num(key) + " value : " + modified_caracteristiques[key].to_string()
+	#return string
 
 
 
 func get_array_string() -> Array[String]:
 	# return list of ["nom_stack_1, masse_1, volume_1, nom_stack_2, masse_2, ....]
 	var array:Array[String] = []
-	array.append(chose.nom)
-	array.append(String.num(masse_totale))
-	array.append(String.num(masse_totale * chose.masse_volumique))
 	if chose.is_denombrable:
-		for sub_stack in chose_quantities.keys():
-			var txt = String.num(sub_stack) + "kg x" + String.num_int64(chose_quantities[sub_stack])
-			array.append(txt)
-			array.append(String.num(sub_stack * chose_quantities[sub_stack]))
-			array.append(String.num(sub_stack * chose_quantities[sub_stack] * chose.masse_volumique))
+		array.append(String.num(masse_individuelle) + "kg x" + String.num(nombre))
+	else:
+		array.append("")
+	array.append(String.num(masse_stack))
+	array.append(String.num(masse_stack * chose.masse_volumique))
 	return array
 
 

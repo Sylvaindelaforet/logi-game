@@ -48,7 +48,7 @@ func _gui_input(event):
 		get_parent().remove_button(self)
 		queue_free()
 
-	if event.is_action_pressed("clic_gauche"):
+	if event.is_action_released("clic_gauche"):
 		if not button_chosen:
 			_set_background_color(COLOR_BG_SELECTED)
 			button_chosen = true
@@ -63,15 +63,22 @@ func _set_background_color(color:Color = Color(0.2, 0.2, 0.2)):
 
 
 func _get_drag_data(_at_position):
-	print("button_tab_ui tried dragged")
 	return self
 
 
 func _can_drop_data(_at_position, data):
-	return is_instance_of(data, TabButton)
+	return is_instance_of(data, TabButton) and get_parent() != data.get_parent()
 
 
 func _drop_data(_at_position, _data):
-	print(_data.size)
-	print("drop button_tab_ui", _at_position)
+	get_parent()._drop_data(_at_position, _data)
+
+
+
+
+
+
+
+
+
 

@@ -7,6 +7,7 @@ extends VBoxContainer
 # InventaireUI (extends Vbox)
 # | - TabBarUI (extends Hbox) trie les onglets TODO ajouter un horizontal scroll ?	
 #   | - TabButton (extends PanelContainer) homebrew bouton onglets possède poignet de l'inventaire
+#       | - var label
 #   | - TabButton (extends PanelContainer) homebrew bouton onglets
 #   | - ...
 # | - TabInventaire (extends ScrollContainer) container pour y draw les inventaires

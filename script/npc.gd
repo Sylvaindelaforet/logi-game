@@ -16,10 +16,12 @@ var movement_speed: float = 300.0
 var max_health:float = 100
 var max_hunger:float = 100
 var max_thirst:float = 100
+var max_endurance:float = 100
 
 var health:float
 var hunger:float
 var thirst:float
+var endurance:float
 
 
 var task_manager:TaskManager
@@ -41,6 +43,7 @@ func _ready():
 	health = 100
 	hunger = 100
 	thirst = 100
+	endurance = 100
 
 
 func _unhandled_input(event):

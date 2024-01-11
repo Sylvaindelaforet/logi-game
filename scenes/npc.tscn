@@ -1,13 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://k4eshxy0fdka"]
 
 [ext_resource type="Script" path="res://script/npc.gd" id="1_5mael"]
-[ext_resource type="Texture2D" uid="uid://ckqcld73q60sp" path="res://tache.png" id="1_q8bls"]
+[ext_resource type="Texture2D" uid="uid://dnr7gpgeb7uyt" path="res://asset/character.png" id="2_nfim4"]
 [ext_resource type="Script" path="res://script/inventaire.gd" id="3_jny7o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gw52w"]
 radius = 30.0
 
 [node name="NPC" type="CharacterBody2D"]
+collision_layer = 2
 input_pickable = true
 script = ExtResource("1_5mael")
 
@@ -15,13 +16,15 @@ script = ExtResource("1_5mael")
 shape = SubResource("CircleShape2D_gw52w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.15, 0.127)
-texture = ExtResource("1_q8bls")
+position = Vector2(7, -54)
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("2_nfim4")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
 
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-
 [node name="Inventaire" type="Node" parent="."]
 script = ExtResource("3_jny7o")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 30.0

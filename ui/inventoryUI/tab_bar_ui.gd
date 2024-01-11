@@ -13,8 +13,10 @@ func _init():
 
 
 func _on_button_clicked(button):
-	button_chosen.untoggle()
+	if button_chosen != null:
+		button_chosen.untoggle()
 	button_chosen = button
+	button.button_is_chosen()
 	get_parent().draw_inventaire(button_chosen.inventaire)
 
 
@@ -31,8 +33,8 @@ func remove_button(button:TabButton):
 	# remove button from tab bar
 	if button == button_chosen:
 		var children = get_children()
-		if children.size() > 1:
-			button_chosen = children[1]
+		if children.size() > 0:
+			button_chosen = children[0]
 			button_chosen.button_is_chosen()
 			get_parent().draw_inventaire(button_chosen.inventaire)
 		else:
@@ -54,10 +56,12 @@ func _can_drop_data(_at_position, data):
 	return is_instance_of(data, TabButton)
 
 
-func _drop_data(_at_position, _data):
-	_data.reparent(self)
-	if button_chosen == null:
-		button_chosen = _data
-		get_parent().draw_inventaire(_data.inventaire)
-	
-	
+func _drop_data(_at_position, data):
+	var ancien_parent = data.get_parent()
+	data.reparent(self)
+	ancien_parent.remove_button(data)
+	_on_button_clicked(data)
+
+
+
+

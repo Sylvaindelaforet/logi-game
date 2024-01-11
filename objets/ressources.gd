@@ -51,8 +51,8 @@ static var Choses = {
 		true,
 		0.84,
 		{
-			Carac.MANGER : 20,
-			Carac.BOIRE : 0,
+			Carac.MANGER : 60,
+			Carac.BOIRE : 20,
 		}
 	),
 	ID.FARINE_BLE : Chose.new(
