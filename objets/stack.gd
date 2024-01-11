@@ -135,11 +135,17 @@ func volume_stack():
 	return masse_stack * chose.masse_volumique
 
 
-func get_carac():
+func get_carac(carac_id):
+	if modified_caracteristiques.has(carac_id):
+		return modified_caracteristiques[carac_id]
+	else:
+		return chose.get_carac(carac_id)
+
+
+func get_all_carac():
 	var caracteristics = chose.default_caracteristics.duplicate()
 	caracteristics.merge(modified_caracteristiques, true)
 	return caracteristics
-
 
 
 #

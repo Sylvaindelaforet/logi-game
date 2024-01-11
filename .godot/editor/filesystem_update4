@@ -1,7 +1,7 @@
 res://scenes/npc.tscn
 res://script/coffre.gd
-res://objets/transformation.gd
-res://objets/chose.gd
-res://objets/ressources.gd
 res://objets/stack.gd
-res://script/npc.gd
+res://objets/transformation.gd
+res://objets/transfo_parameters.gd
+res://objets/ressources.gd
+res://script/task_manager.gd

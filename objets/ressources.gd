@@ -20,6 +20,7 @@ enum Carac {
 	ETAT,
 	TEMPERATURE,
 	METAL,
+	VITAMINES,
 }
 
 enum CARAC_OPE {
@@ -41,6 +42,7 @@ const DEFAULT_VALUE_CARAC = {
 	Carac.MANGER : -20,
 	Carac.ETAT : Etat.SOLIDE,
 	Carac.METAL : 0,
+	Carac.VITAMINES : 0,
 }
 
 
