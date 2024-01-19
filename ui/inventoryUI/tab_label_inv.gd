@@ -36,14 +36,15 @@ func chosen_action(option:int):
 			if stack_or_list_stack is Stack:
 				print("Stack ")
 
+
 func transfer_to_inv(new_inv):
-	var inv = get_parent().get_parent().get_parent().get_current_inv()
+	var current_inv = get_parent().get_parent().get_parent().get_current_inv()
 	if stack_or_list_stack is StackList:
 		new_inv.add_stack_list(stack_or_list_stack)
-		inv.erase_stack_list(stack_or_list_stack)
+		current_inv.erase_stack_list(stack_or_list_stack)
 	else:
 		new_inv.add_stack(stack_or_list_stack)
-		inv.erase_stack(stack_or_list_stack)
+		current_inv.erase_stack(stack_or_list_stack)
 
 
 
@@ -52,7 +53,6 @@ func _get_drag_data(_pos):
 
 
 func _can_drop_data(_pos, data):
-	print(is_instance_of(data, LabelInvTab) and get_parent().get_parent() != data.get_parent().get_parent())
 	return is_instance_of(data, LabelInvTab) and get_parent() != data.get_parent()
 
 

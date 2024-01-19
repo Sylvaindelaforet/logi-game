@@ -9,6 +9,19 @@ var hud:Hud
 
 var inventaire:Inventaire
 
+
+var max_health:float = 100
+var max_hunger:float = 100
+var max_thirst:float = 100
+var max_endurance:float = 100
+
+var health:float
+var hunger:float
+var thirst:float
+var endurance:float
+
+
+
 func _ready():
 	hud = $/root/Main/HUD
 	inventaire = $InventairePlayer
@@ -37,5 +50,16 @@ func _input(event):
 func get_inventaire():
 	return $InventairePlayer
 
+
+func regen_hunger(valeur):
+	print_debug("devrait call regen_hunger avec comme valeur : ", valeur)
+
+
+func regen_thirst(valeur):
+	print_debug("devrait call regen_thirst avec comme valeur : ", valeur)
+
+
+func regen_hp(valeur):
+	print_debug("devrait call regen_hp avec comme valeur : ", valeur)
 
 

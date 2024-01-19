@@ -62,7 +62,7 @@ func erase_stack(stack:Stack):
 
 
 # ??? wtf c'es utile cette fonction ???
-func send(stack:Stack, other_inv:Inventaire):
+func send(_stack:Stack, _other_inv:Inventaire):
 	push_error("c'est quoi cette foction ? elle est utilisée où ?")
 
 
@@ -91,7 +91,7 @@ func get_array_string() -> Array[String]:
 	return array
 
 
-func get_all_stack_list() -> Array[Stack]:
+func get_all_stack_list() -> Array[StackList]:
 	return ressources_inv.values()
 
 
@@ -100,7 +100,7 @@ func get_inv_name() -> String:
 
 
 func get_handle_for_label():
-	var array = [self]
+	var array = []
 	for v in ressources_inv.values():
 		array.append(v)
 		v.add_handle_for_label(array)
@@ -108,6 +108,7 @@ func get_handle_for_label():
 
 
 func erase_stack_list(stack_list:StackList):
+	masse_inv = masse_inv - stack_list.get_masse()
 	ressources_inv.erase(stack_list.get_id_chose())
 
 func add_stack_list(stack_list:StackList):
@@ -116,7 +117,9 @@ func add_stack_list(stack_list:StackList):
 
 # debug utilitaires
 
-#func debug_print_inventory():
-	#print("print de l'inventaire : ")
-	#for stack in stacks:
-		#print(stack.debug_to_string())
+func debug_print_inventory():
+	print("print de l'inventaire : ", self)
+	print(get_array_string())
+
+
+

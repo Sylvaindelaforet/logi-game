@@ -59,6 +59,8 @@ func remove(quantite):
 	else:
 		masse_stack -= quantite
 
+func get_masse():
+	return masse_stack
 
 func get_quantite():
 	if chose.is_denombrable:
@@ -81,51 +83,14 @@ func same_carac(other_stack:Stack):
 		if modified_caracteristiques[key] != other_stack.modified_caracteristiques[key]:
 			return false
 	return true
-
-
-
-
+	
 # renvoie vrai si la valeur de la caractéristique est bonne selon caracteristics
-# ça a l'air un peu foireux à refaire ?
-# caracteristics = [[Carac_id, has], [Carac_id, SUP | INF | EQUAL , value],
-# [Carac_id, between , [value1 value 2]]
-# or caracteristics = [id_chose_1, id_chose_2, id_chose_3, ...]
-func compatible(caracteristics):
-	
-	var temp_dictionary = chose.default_caracteristics.duplicate()
-	temp_dictionary.merge(modified_caracteristiques, true)
-	
-	for elt in caracteristics:
-		if typeof(elt) != TYPE_ARRAY:
-			if chose.id == elt:
-				return true
-		
-		var carac_id = elt[0]
-		var operator = elt[1]
-		
-		if not chose.default_caracteristics.has(carac_id):
-			return false
-		
-		match operator:
-			Ressources.CARAC_OPE.HAS:
-				pass
-			Ressources.CARAC_OPE.SUPERIOR:
-				if temp_dictionary[carac_id] < elt[2]:
-					return false
-			Ressources.CARAC_OPE.INFERIOR:
-				if temp_dictionary[carac_id] > elt[2]:
-					return false
-			Ressources.CARAC_OPE.BETWEEN:
-				var lower_bound = elt[3][0]
-				var higher_bound = elt[3][1]
-				if temp_dictionary[carac_id] < lower_bound and temp_dictionary[carac_id] > higher_bound:
-					return false
-			Ressources.CARAC_OPE.EQUAL:
-				if temp_dictionary[carac_id] != elt[2]:
-					return false
-	
-	return true
+func compatible(caracteristics:Array[CondCarac]):
 
+	for cond in caracteristics:
+		if not cond.conforme(self):
+			return false
+	return true
 
 func get_id() -> int:
 	return chose.id
@@ -133,6 +98,11 @@ func get_id() -> int:
 
 func volume_stack():
 	return masse_stack * chose.masse_volumique
+
+
+func set_carac(carac_id, value):
+	modified_caracteristiques[carac_id] = value
+	
 
 
 func get_carac(carac_id):
@@ -146,24 +116,6 @@ func get_all_carac():
 	var caracteristics = chose.default_caracteristics.duplicate()
 	caracteristics.merge(modified_caracteristiques, true)
 	return caracteristics
-
-
-#
-#func remove_stack(stack:Stack):
-	#if stack.chose.is_denombrable:
-		#for key in stack.chose_quantities.keys():
-			#masse_totale = masse_totale - key * stack.chose_quantities[key]
-			#if chose_quantities.has(key):
-				#if chose_quantities[key] - stack.chose_quantities[key] == 0:
-					#chose_quantities.erase(key)
-				#else:
-					#chose_quantities[key] = chose_quantities[key] - stack.chose_quantities[key]
-			#else:
-				#push_error("tried to remove from a stack smthng that doesn't exist")
-	#else:
-		#masse_totale = masse_totale - stack.masse_totale
-
-
 
 
 

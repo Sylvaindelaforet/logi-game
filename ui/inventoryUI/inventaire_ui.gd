@@ -30,15 +30,6 @@ func _init():
 	add_child(tab_inventaire)
 
 
-#func _ready():
-#	size_flags_horizontal = Control.SIZE_EXPAND_FILL
-#	size_flags_vertical = Control.SIZE_EXPAND_FILL
-#	tab_bar = TabBarUI.new([])
-#	add_child(tab_bar)
-#	tab_inventaire = TabInventaire.new()
-#	add_child(tab_inventaire)
-
-
 func get_current_inv():
 	return tab_bar.get_current_inv()
 

@@ -8,6 +8,9 @@ var inventaire:Inventaire
 enum {OUVRIR, AJOUTER_POMME, AJOUTER_GROSSE_POMME}
 var options_clic_droit:Array[String] = ["ouvrir", "ajouter 3 pomme", "ajouter grosse pomme"]
 
+
+
+
 func _ready():
 	inventaire = $Inventaire
 	hud = $/root/Main/HUD
@@ -30,17 +33,29 @@ func _input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed("clic_droit"):
 		hud.popup_menu_asked.emit(options_clic_droit, self)
 
+
 func chosen_action(option:int):
 	match option:
 		OUVRIR:
 			hud.display_inventory(inventaire)
 		AJOUTER_POMME:
-			inventaire.add_new_stack(Ressources.Choses[Ressources.ID.POMME], 0.145, 3)
+			inventaire.add_new_stack(Chose.DEFAULT[Chose.ID.POMME], 0.145, 3)
 		AJOUTER_GROSSE_POMME:
-			inventaire.add_new_stack(Ressources.Choses[Ressources.ID.POMME], 0.200, 1)
+			inventaire.add_new_stack(Chose.DEFAULT[Chose.ID.POMME], 0.200, 1)
+
+			var stack = Stack.new(Chose.DEFAULT[Chose.ID.FER], 0.2, 1)
+			var transfo_forger:Transformation = Transformation.transfo_forger_epee
+			var produced = transfo_forger.transform($/root/Main/Player, [stack]) 
+			print(produced)
+
+
 
 func _on_screen_entered():
 	hud.add_inventaire_visible(inventaire)
 
+
 func _on_screen_exited():
 	hud.remove_inventaire_visible(inventaire)
+
+
+

@@ -6,9 +6,11 @@ signal popup_menu_asked(options:Array[String], demandeur)
 var clic_droit:PopupMenu
 var quemandeur
 var window_inventaire:PackedScene
+var window_transfo:PackedScene
 
 var inventaire_joueur:Inventaire
 var inventaires_visible:Array[Inventaire] = []
+
 
 func _ready():
 	popup_menu_asked.connect(display_popup_menu)
@@ -16,6 +18,8 @@ func _ready():
 	clic_droit.popup_window = true
 	clic_droit.id_pressed.connect(send_response)
 	window_inventaire = preload("res://ui/window_inventaire.tscn")
+	window_transfo = preload("res://ui/window_transfo.tscn")
+
 
 func display_popup_menu(options:Array[String], demandeur):
 	clic_droit.clear()
@@ -25,9 +29,11 @@ func display_popup_menu(options:Array[String], demandeur):
 	clic_droit.visible = true
 	quemandeur = demandeur
 
+
 func send_response(option):
 	quemandeur.chosen_action(option)
 	quemandeur = null
+
 
 func display_inventory(inventaire_focus:Inventaire = null):
 	# instantiate window
@@ -48,11 +54,20 @@ func display_inventory(inventaire_focus:Inventaire = null):
 			window.add_inventaire_array(invs, false)
 
 
+func open_transformation_window():
+	# instantiate window
+	var window:WindowTransfo = window_transfo.instantiate()
+	add_child(window)
+	# fill window
+
+
 func add_inventaire_visible(inv:Inventaire):
 	inventaires_visible.append(inv)
 
+
 func add_player_inventaire(inv:Inventaire):
 	inventaire_joueur = inv
+
 
 func remove_inventaire_visible(inv:Inventaire):
 	inventaires_visible.erase(inv)

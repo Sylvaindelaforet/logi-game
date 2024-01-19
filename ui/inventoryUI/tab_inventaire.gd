@@ -18,11 +18,13 @@ func draw_inventaire(inventaire:Inventaire):
 	var array_txt = inventaire.get_array_string()
 	var array_stack = inventaire.get_handle_for_label()
 	
-	# crée les labels et les wire
-	var i:int = 0
-	for txt in array_txt:
-		_new_label(txt, array_stack[i/NUMBER_GRID_COLUMN])
-		i+=1
+	# la première ligne ne doit pas pouvoir être déplacée
+	_new_label(array_txt[0])
+	_new_label(array_txt[1])
+	_new_label(array_txt[2])
+	for i in range(3,len(array_txt)):
+		_new_label(array_txt[i], array_stack[(i-3)/NUMBER_GRID_COLUMN])
+
 
 
 func _set_background_color():
@@ -32,7 +34,11 @@ func _set_background_color():
 
 
 func _new_label(txt:String, p_stack = null):
-	var label:LabelInvTab = LabelInvTab.new()
+	var label
+	if p_stack == null:
+		label = Label.new()
+	else:
+		label = LabelInvTab.new()
 	label.text = txt
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	if p_stack != null:

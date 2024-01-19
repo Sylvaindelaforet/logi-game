@@ -1,4 +1,4 @@
-extends Object
+extends Resource
 class_name TaskManager
 
 # a task is a list of action
@@ -66,9 +66,9 @@ enum {MOVE_TO, MOVE_TO_CHEST, EAT, CHECK_INVENTORY = CONDITIONAL_MIN_ID}
 # un arbre de noeud c'est : [Action ID, [parameters], following action ]
 # pour conditional : [Action ID, [parameters], [followings ations] ]
 static var task_npc_nourrir = [
-	CHECK_INVENTORY, ["self", [Ressources.ID.POMME]],
+	CHECK_INVENTORY, ["self", [Chose.ID.POMME]],
 		[
-			[EAT, ["self", [Ressources.ID.POMME]], []],
+			[EAT, ["self", [Chose.ID.POMME]], []],
 			[CHECK_INVENTORY, ["at_home", null], [[],[]]]
 		]
 	]

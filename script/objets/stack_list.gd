@@ -64,8 +64,11 @@ func erase_stack(stack:Stack):
 
 
 func has_compatible(carac):
+	var array:Array[Stack] = []
+	for stack in stack_list:
+		pass
 	# return liste des compatibles, [] sinon
-	push_error("TODO")
+	return array
 
 # operators pour les listes de stack
 
@@ -76,6 +79,8 @@ func add_stack_list(p_stack_list:StackList):
 func erase_from_stack_list(stak_list):
 	push_error("TODO")
 
+func get_masse():
+	return masse_liste
 
 # fin des opérateurs
 

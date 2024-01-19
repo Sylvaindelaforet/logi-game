@@ -52,7 +52,7 @@ func _unhandled_input(event):
 		set_movement_target(destination_position)
 
 
-# clic droit pour tester ####################################
+# clic droit pour tester ###############################################################
 enum {LISTER_TASK, ADD_TASK, ACTIVATE_TASK}
 var options_clic_droit:Array[String] = ["lister task", "add task", "activate task"]
 
@@ -69,7 +69,7 @@ func chosen_action(option:int):
 		ACTIVATE_TASK:
 			task_manager.next_task()
 
-# fin clic droit pour tester ####################################
+# fin clic droit pour tester ###############################################################
 
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
@@ -85,9 +85,11 @@ func _physics_process(_delta):
 	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
 	move_and_slide()
 
+
 # eat food out of the stack in the array given
-func eat(stacks_of_food:Array[Stack]):
-	print("activated function eat")
+func increase_stat(stat):
+	
+	print("activated function eat : stat : ", stat)
 
 
 
