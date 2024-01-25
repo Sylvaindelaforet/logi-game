@@ -1,60 +1,76 @@
-extends Resource
 class_name Product
+extends Resource
+## ce qui est produit par une transformation, ça peut être
+##	- stack
+##	- changement stat joueur
+##	- changement environnemental (plus tard : énergie, feu, pousse...)
 
-# ce qui est produit par une transformation, ça peut être
-#	- stack
-#	- changement stat joueur
-#	- changement environnemental (plus tard : énergie, feu, pousse...)
-#	- 
-#	- 
 
 var chose
+
+var actor
 
 # {function_name | carac -> list of parameters/callable}
 var modification
 
 var list_stack_reagent
 
+## le ratio marche de tandem avec celui en entrée, si c'est dénombrable
+## c'est le nombre d'item, sinon c'est la quantité pour et en kg
+## exemple :
+## glacer :
+## eau = 1 kg			--> si 800g --> si 850g
+## glaçon = 10 (de 100g)	--> alors 8 --> alors 8 + 50g eau not consumed
+## fondre :
+## glaçon = 10 (de 100g)
+## eau = 1 kg
 var ratio
 
-func _init(p_chose, p_modification, p_ratio = {}):
+
+
+## pour une chose : modification {Carac -> valeur | [fonctions pour get valeur]} 
+func _init(p_chose, p_ratio, p_modification = {}):
 	chose = p_chose
 	modification = p_modification
-	list_stack_reagent = []
 	ratio = p_ratio
+	list_stack_reagent = []
 
 
-func produce(actor, p_list_stack_reagent, nombre_item = 1):
-	var stack_produced = null
+## crée le produit et le modifie selon modification
+func produce(p_actor, ratio_quantite, p_list_stack_reagent):
+
+	var stack_produced
+	actor = p_actor
 	list_stack_reagent = p_list_stack_reagent.duplicate()
 
 	# create and modifies stack produced
 	if chose is Chose:
-		var masse = 0
-		for rat in ratio:
-			masse = masse + p_list_stack_reagent[rat].get_masse() * ratio[rat]
-		stack_produced = Stack.new(chose, masse/nombre_item, nombre_item)
+
+		stack_produced = Stack.new(chose, ratio_quantite * ratio)
 	
 		for key in modification.keys():
 			var parameters = execute_functions(modification[key])
-			stack_produced.callv(key, parameters)
+			stack_produced.set_carac(key, parameters)
 	
 	# call modification on actor
 	elif chose == Transformation.ON_ACTOR:
 		for key in modification.keys():
 			var parameters = execute_functions(modification[key])
-			actor.callv(key, parameters)
+			actor.call(key, parameters)
 
 	# call modification on environment
 	elif chose == Transformation.ON_ENVIRONMENT:
 		push_error("TODO")
 
+	actor = null
 	list_stack_reagent.clear()
-	
 	return stack_produced
 
 
 func execute_functions(list):
+
+	if typeof(list) != TYPE_ARRAY:
+		return list
 
 	if list == []:
 		return []
@@ -69,17 +85,22 @@ func execute_functions(list):
 	if result[0] is String:
 		var nom_func = result.pop_front()
 		result = callv(nom_func, result)
-		if typeof(result) != TYPE_ARRAY:
-			result = [result]
-
-	if result[0] is Callable:
+	elif result[0] is Callable:
 		var function = result.pop_front()
 		result = function.callv(result)
-		if typeof(result) != TYPE_ARRAY:
-			result = [result]
 
 	return result
 
+
+func is_denombrable():
+	if chose is Chose:
+		return chose.is_denombrable
+	return
+
+
+###########################################
+############### Utilitaires ###############
+###########################################
 
 
 func get_carac_reagent(at:int, carac:int):

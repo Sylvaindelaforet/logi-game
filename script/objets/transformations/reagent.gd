@@ -6,7 +6,7 @@ class_name Reagent
  
 var chose:Chose
 
-# une liste de condition :
+# une liste de condition : CondCarac
 var caracs_necessaires
 
 # 
@@ -14,7 +14,7 @@ var ratio
 
 
 
-func _init(p_chose = null, p_caracs_necessaires = [], p_ratio = 0.0):
+func _init(p_chose, p_ratio, p_caracs_necessaires = []):
 	chose = p_chose
 	caracs_necessaires = p_caracs_necessaires
 	ratio = p_ratio
@@ -36,6 +36,15 @@ func conforme(stack:Stack) -> bool:
 
 	return is_conforme
 
+
+func get_ratio():
+	return ratio
+
+
+func is_denombrable():
+	if chose is Chose:
+		return chose.is_denombrable
+	return
 
 
 

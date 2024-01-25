@@ -45,11 +45,11 @@ func _ready():
 	thirst = 100
 	endurance = 100
 
-
-func _unhandled_input(event):
-	if event.is_action_pressed("clic_gauche"):
-		var destination_position = get_global_mouse_position()
-		set_movement_target(destination_position)
+# ## pour les déplacer par test
+# func _unhandled_input(event):
+# 	if event.is_action_pressed("clic_gauche"):
+# 		var destination_position = get_global_mouse_position()
+# 		set_movement_target(destination_position)
 
 
 # clic droit pour tester ###############################################################

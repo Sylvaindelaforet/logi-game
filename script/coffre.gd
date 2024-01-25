@@ -5,8 +5,8 @@ var hud:Hud
 
 var inventaire:Inventaire
 
-enum {OUVRIR, AJOUTER_POMME, AJOUTER_GROSSE_POMME}
-var options_clic_droit:Array[String] = ["ouvrir", "ajouter 3 pomme", "ajouter grosse pomme"]
+enum {OUVRIR, AJOUTER_POMME, AJOUTER_UNE_POMME}
+var options_clic_droit:Array[String] = ["ouvrir", "ajouter 3 pomme", "ajouter 1 lingot de fer"]
 
 
 
@@ -39,14 +39,14 @@ func chosen_action(option:int):
 		OUVRIR:
 			hud.display_inventory(inventaire)
 		AJOUTER_POMME:
-			inventaire.add_new_stack(Chose.DEFAULT[Chose.ID.POMME], 0.145, 3)
-		AJOUTER_GROSSE_POMME:
-			inventaire.add_new_stack(Chose.DEFAULT[Chose.ID.POMME], 0.200, 1)
+			inventaire.add_new_stack(Chose.DEFAULT[Chose.ID.POMME], 3)
+		AJOUTER_UNE_POMME:
+			inventaire.add_new_stack(Chose.DEFAULT[Chose.ID.LINGOT_FER], 1)
 
-			var stack = Stack.new(Chose.DEFAULT[Chose.ID.FER], 0.2, 1)
-			var transfo_forger:Transformation = Transformation.transfo_forger_epee
-			var produced = transfo_forger.transform($/root/Main/Player, [stack]) 
-			print(produced)
+			# var stack = Stack.new(Chose.DEFAULT[Chose.ID.LINGOT_FER], 1)
+			# var transfo_forger:Transformation = Transformation.transfo_forger_epee
+			# var produced = transfo_forger.transform($/root/Main/Player, [stack]) 
+			# print(produced)
 
 
 

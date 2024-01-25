@@ -11,6 +11,7 @@ enum {
 	ETAT,
 	TEMPERATURE,
 	METAL,
+	DURABILITE,
 }
 
 # "etat" -> [solide, liquide, gazeux] || "poussière", 

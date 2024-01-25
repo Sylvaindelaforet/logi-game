@@ -1,22 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnlohrf0v47fn"]
+[gd_scene load_steps=7 format=3 uid="uid://dnlohrf0v47fn"]
 
+[ext_resource type="Script" path="res://script/house.gd" id="1_6thft"]
 [ext_resource type="Texture2D" uid="uid://v0r1o2iaxku3" path="res://batiment.png" id="1_l5yfn"]
 [ext_resource type="Texture2D" uid="uid://hhdysc7bukkj" path="res://rectangle.png" id="2_xnhk0"]
+[ext_resource type="Texture2D" uid="uid://3flotd11eepy" path="res://plancher.png" id="3_ckqmj"]
+[ext_resource type="Texture2D" uid="uid://cvqdf7f7awpw1" path="res://blanc.png" id="3_k24ly"]
 
-[node name="Node2D" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gb16w"]
+size = Vector2(1222.5, 621.5)
+
+[node name="House" type="StaticBody2D"]
+script = ExtResource("1_6thft")
 
 [node name="Hidden" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-8.25001, 282.5)
-scale = Vector2(4.88477, 2.22266)
+position = Vector2(-8.25001, 247)
+scale = Vector2(4.88477, 2.5)
 texture = ExtResource("2_xnhk0")
 
+[node name="Sprite2D" type="Sprite2D" parent="Hidden"]
+position = Vector2(3.68591, 122.004)
+scale = Vector2(0.0812987, 0.0282081)
+texture = ExtResource("3_k24ly")
+
 [node name="Interieur" type="Sprite2D" parent="."]
-visible = false
+position = Vector2(-3.5, 251.75)
+scale = Vector2(2.0017, 1.55691)
+texture = ExtResource("3_ckqmj")
 
 [node name="Exterieur" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_l5yfn")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-632, -3, -622, 575, -108, 563, -108, 535, -596, 543, -598, 33, 580, 33, 574, 539, 126, 529, 126, 561, 620, 571, 624, -3)
+polygon = PackedVector2Array(-633, -73, -632, 569, -107, 567, -108, 540, -596, 538, -597, -34, 581, -37, 586, 535, 127, 535, 127, 569, 620, 571, 618, -72)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-825, 273)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(815.75, -25.75)
+shape = SubResource("RectangleShape2D_gb16w")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]

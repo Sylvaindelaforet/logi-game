@@ -18,7 +18,7 @@ func _ready():
 	clic_droit.popup_window = true
 	clic_droit.id_pressed.connect(send_response)
 	window_inventaire = preload("res://ui/window_inventaire.tscn")
-	window_transfo = preload("res://ui/window_transfo.tscn")
+	window_transfo = preload("res://ui/transfoUI/window_transfo.tscn")
 
 
 func display_popup_menu(options:Array[String], demandeur):
@@ -58,7 +58,16 @@ func open_transformation_window():
 	# instantiate window
 	var window:WindowTransfo = window_transfo.instantiate()
 	add_child(window)
+
+func open_inventaire_joueur():
+	# instantiate window
+	var player:Player = $/root/Main/Player
+	display_inventory(player.get_inventaire())
 	# fill window
+	
+
+
+
 
 
 func add_inventaire_visible(inv:Inventaire):

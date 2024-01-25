@@ -51,9 +51,3 @@ func conforme(stack:Stack) -> bool:
 
 
 
-
-
-
-
-
-

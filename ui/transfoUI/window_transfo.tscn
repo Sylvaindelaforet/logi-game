@@ -1,0 +1,111 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmrb73x24857q"]
+
+[ext_resource type="Script" path="res://ui/transfoUI/window_transfo.gd" id="1_t0ang"]
+[ext_resource type="Script" path="res://ui/transfoUI/interface_transfo.gd" id="2_cntju"]
+
+[node name="Window_transfo" type="Window"]
+position = Vector2i(26, 36)
+size = Vector2i(600, 500)
+script = ExtResource("1_t0ang")
+
+[node name="ColorBack" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.627451, 0.231373, 0.101961, 1)
+
+[node name="Panels" type="HBoxContainer" parent="ColorBack"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InvSide" type="VBoxContainer" parent="ColorBack/Panels"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="ColorBack/Panels/InvSide"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Workshop inventory"
+horizontal_alignment = 1
+
+[node name="InterfaceTransfo" type="ScrollContainer" parent="ColorBack/Panels/InvSide"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_cntju")
+
+[node name="GridContainer" type="GridContainer" parent="ColorBack/Panels/InvSide"]
+visible = false
+layout_mode = 2
+columns = 4
+
+[node name="CheckButton" type="CheckButton" parent="ColorBack/Panels/InvSide/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorBack/Panels/InvSide/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "pomme"
+
+[node name="Label2" type="Label" parent="ColorBack/Panels/InvSide/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "pomme"
+
+[node name="Label3" type="Label" parent="ColorBack/Panels/InvSide/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "pomme"
+
+[node name="CheckButton2" type="CheckButton" parent="ColorBack/Panels/InvSide/GridContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="ColorBack/Panels/InvSide/GridContainer"]
+layout_mode = 2
+text = "pomme"
+
+[node name="TransfoSide" type="PanelContainer" parent="ColorBack/Panels"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="List" type="VBoxContainer" parent="ColorBack/Panels/TransfoSide"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ColorBack/Panels/TransfoSide/List"]
+layout_mode = 2
+text = "Transformations
+"
+horizontal_alignment = 1
+
+[node name="TransfoChoice" type="OptionButton" parent="ColorBack/Panels/TransfoSide/List"]
+layout_mode = 2
+item_count = 2
+allow_reselect = true
+popup/item_0/text = "manger"
+popup/item_0/id = 0
+popup/item_1/text = "forger épée"
+popup/item_1/id = 1
+
+[node name="Number" type="HBoxContainer" parent="ColorBack/Panels/TransfoSide/List"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="ColorBack/Panels/TransfoSide/List/Number"]
+layout_mode = 2
+text = "Number :"
+
+[node name="Choice" type="SpinBox" parent="ColorBack/Panels/TransfoSide/List/Number"]
+layout_mode = 2
+
+[node name="ListeReagent" type="Label" parent="ColorBack/Panels/TransfoSide/List"]
+layout_mode = 2
+text = "Reagent : "
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="item_selected" from="ColorBack/Panels/TransfoSide/List/TransfoChoice" to="." method="_on_transfo_selected"]

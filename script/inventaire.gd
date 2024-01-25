@@ -10,63 +10,44 @@ extends Node
 var ressources_inv:Dictionary
 
 var masse_inv:float
-var volume_inv:float
-
 
 # pourquoi pas avoir {chose -> [stack]} au lieu de [Stack] ??
 
 signal inventaire_modified
 
+################################################
+#################### Stack #####################
+################################################
 
+## add a stack, merge if already here
 func add_stack(new_stack:Stack):
 	masse_inv += new_stack.masse_stack
-	volume_inv += new_stack.volume_stack()
 	if ressources_inv.has(new_stack.get_id()):
 		ressources_inv[new_stack.get_id()].add_stack(new_stack)
 	else:
-		ressources_inv[new_stack.get_id()] = StackList.new(new_stack)
+		var new_stack_list = StackList.new(new_stack)
+		new_stack_list.removed_from_stack_list.connect(_on_removed_from_stack_list)
+
+		ressources_inv[new_stack.get_id()] = new_stack_list
 	inventaire_modified.emit()
 
-
-func add_new_stack(p_chose:Chose, p_masse:float, p_nombre = 0):
-	var a = Stack.new(p_chose, p_masse, p_nombre)
+## create and add a stack
+func add_new_stack(p_chose:Chose, quantite):
+	var a = Stack.new(p_chose, quantite)
 	add_stack(a)
 
-
-# retourne le stack si il le possède null sinon
+## retourne le stack si il le possède null sinon
 func has_stack(stack:Stack) -> Stack:
 	if ressources_inv.has(stack.get_id()):
 		return ressources_inv[stack.get_id()].has_stack(stack)
 	return null
 
 
-# si impossible push error
-func remove_stack(stack:Stack):
-	masse_inv -= stack.masse_stack
-	volume_inv -= stack.volume_stack()
-	if ressources_inv.has(stack.get_id()):
-		if ressources_inv[stack.get_id()].remove_stack(stack):
-			ressources_inv.erase(stack.get_id())
-		inventaire_modified.emit()
-	else:
-		push_error("tried to remove a stack that isn't present")
-
-
 func erase_stack(stack:Stack):
-	masse_inv -= stack.masse_stack
-	volume_inv -= stack.volume_stack()
-	# clean if no more stack
-	if ressources_inv[stack.get_id()].erase_stack(stack):
-		ressources_inv.erase(stack.get_id())
-	inventaire_modified.emit()
+	ressources_inv[stack.get_id()].erase_stack(stack)
 
 
-# ??? wtf c'es utile cette fonction ???
-func send(_stack:Stack, _other_inv:Inventaire):
-	push_error("c'est quoi cette foction ? elle est utilisée où ?")
-
-
-# returns list of stacks compatible 
+## returns list of stacks compatible 
 func has_compatible(caracteristique):
 	var list_of_stacks = []
 	for stack_list in ressources_inv.values:
@@ -74,29 +55,74 @@ func has_compatible(caracteristique):
 	return list_of_stacks
 
 
-func has_thing(chose):
-	push_error("TODO finaliser la fonction si utile...")
-	if typeof(chose) == TYPE_ARRAY:
-		print_debug("TODO for chose array")
+################################################
+################# StackList ####################
+################################################
+
+
+## returns Array[StackList]
+func get_all_stack_list():
+	return ressources_inv.values()
+
+
+
+func erase_stack_list(stack_list:StackList):
+	masse_inv = masse_inv - stack_list.get_masse()
+	stack_list.removed_from_stack_list.disconnect(_on_removed_from_stack_list)
+	ressources_inv.erase(stack_list.get_id_chose())
+	inventaire_modified.emit()
+
+
+func add_stack_list(stack_list:StackList):
+	masse_inv = masse_inv + stack_list.get_masse()
+	if ressources_inv.has(stack_list.get_id_chose()):
+		ressources_inv[stack_list.get_id_chose()].add_stack_list(stack_list)
+	else:
+		ressources_inv[stack_list.get_id_chose()] = stack_list
+		stack_list.removed_from_stack_list.connect(_on_removed_from_stack_list)
+	inventaire_modified.emit()
+
+
+func remove_chose(chose_id):
+	if ressources_inv.has(chose_id):
+		masse_inv -= ressources_inv[chose_id].get_masse()
+		ressources_inv.erase(chose_id)
+
+
+################################################
+################# on Signal ####################
+################################################
+
+
+func _on_removed_from_stack_list(id_chose, masse):
+	masse_inv -= masse
+	if ressources_inv[id_chose].is_empty():
+		ressources_inv.erase(id_chose)
+	inventaire_modified.emit()
 	
-	if ressources_inv.has(chose):
-		return ressources_inv[chose]
-	return null
+
+################################################
+################ utilitaries ###################
+################################################
 
 
+func get_inv_name() -> String:
+	return get_parent().name + "Inventaire"
+
+
+## returns array of string for display in grid
 func get_array_string() -> Array[String]:
-	var array:Array[String] = [get_inv_name(), String.num(masse_inv) + "kg", String.num(volume_inv) +"L"]
+	var array:Array[String] = [get_inv_name(), String.num(masse_inv, 3) + "kg", String.num(get_volume(), 3) +"L"]
 	for stack_list in ressources_inv.values():
 		array = array + stack_list.get_array_string()
 	return array
 
 
-func get_all_stack_list() -> Array[StackList]:
-	return ressources_inv.values()
-
-
-func get_inv_name() -> String:
-	return get_parent().name + "Inventaire"
+func get_volume():
+	var volume = 0
+	for key in ressources_inv.keys():
+		volume = volume + ressources_inv[key].get_volume()
+	return volume
 
 
 func get_handle_for_label():
@@ -107,16 +133,7 @@ func get_handle_for_label():
 	return array
 
 
-func erase_stack_list(stack_list:StackList):
-	masse_inv = masse_inv - stack_list.get_masse()
-	ressources_inv.erase(stack_list.get_id_chose())
-
-func add_stack_list(stack_list:StackList):
-	if ressources_inv.has(stack_list.get_id_chose()):
-		ressources_inv[stack_list.get_id_chose()].add_stack_list(stack_list)
-
-# debug utilitaires
-
+## use for debug
 func debug_print_inventory():
 	print("print de l'inventaire : ", self)
 	print(get_array_string())
