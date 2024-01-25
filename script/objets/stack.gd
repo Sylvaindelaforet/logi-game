@@ -66,6 +66,8 @@ func get_all_carac():
 func get_masse():
 	return masse_stack
 
+func is_empty():
+	return masse_stack < 0.000_001
 
 func get_quantite():
 	if chose.is_denombrable:
@@ -102,7 +104,7 @@ func remove(quantite):
 	var masse
 	if chose.is_denombrable:
 		if not quantite is int:
-			push_error("can't retirer denombrable")
+			push_error("can't retirer à un denombrable la valeur :", quantite)
 		nombre -= quantite
 		masse_stack = masse_individuelle * nombre
 		masse = quantite * masse_individuelle

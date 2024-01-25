@@ -92,7 +92,7 @@ func _init(p_nom_transfo:String, entres:Array[Reagent], sorties:Array[Product]):
 
 
 ## transformateur en général = joueur
-func transform(actor, stacks_entree):
+func transform(actor, stacks_entree, at_most):
 
 	var array = []
 
@@ -114,10 +114,12 @@ func transform(actor, stacks_entree):
 	else:
 		ratio_quantite = ratio_quantite / reagent_limitant.get_ratio()
 
+	if ratio_quantite > at_most:
+		ratio_quantite = at_most
 	# on crée les stacks en sortie
 
 	for prod in parametres_sortie:
-		array.append(prod.produce(actor, ratio_quantite, stacks_entree))
+		array.append(prod.produce(actor, ratio_quantite * prod.ratio, stacks_entree))
 
 	# on enlève les réactifs consommés
 	
@@ -148,12 +150,12 @@ func calc_reactif_limitant(stack_entree:Array):
 	var quantite_stack
 	i += 1
 	while i < len(stack_entree):
-		i += 1
 		quantite_stack = stack_entree[i].get_quantite() / parametres_entree[i].get_ratio()
 		if quantite_max < quantite_stack:
 			reagent_limitant = parametres_entree[i]
 			stack_limitant = stack_entree[i]
 			quantite_max = quantite_stack
+		i += 1
 	return [reagent_limitant, quantite_max]
 
 

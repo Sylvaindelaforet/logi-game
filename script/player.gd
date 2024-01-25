@@ -27,7 +27,14 @@ func _ready():
 	inventaire = $InventairePlayer
 	hud.add_player_inventaire(inventaire)
 	running = 1.0
+	health = 80
+	hunger = 65
+	thirst = 65
+	endurance = 50
 
+
+func _process(_delta):
+	hud.set_bar(health, hunger, thirst)
 
 
 func _physics_process(_delta):
@@ -36,6 +43,8 @@ func _physics_process(_delta):
 	var direction = Input.get_vector("gauche", "droite", "haut", "bas")
 	velocity = direction * SPEED * running
 	move_and_slide()
+
+
 
 
 func _input(event):
@@ -52,14 +61,20 @@ func get_inventaire():
 
 
 func regen_hunger(valeur):
-	print_debug("devrait call regen_hunger avec comme valeur : ", valeur)
+	hunger += valeur
+	if hunger > max_hunger:
+		hunger=max_hunger
 
 
 func regen_thirst(valeur):
-	print_debug("devrait call regen_thirst avec comme valeur : ", valeur)
+	thirst += valeur
+	if thirst > max_thirst:
+		thirst = max_thirst
 
 
 func regen_hp(valeur):
-	print_debug("devrait call regen_hp avec comme valeur : ", valeur)
+	health += valeur
+	if health > max_health:
+		health = max_health
 
 

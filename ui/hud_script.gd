@@ -66,7 +66,13 @@ func open_inventaire_joueur():
 	# fill window
 	
 
-
+func set_bar(hp, faim, soif):
+	var health = $Bars/HealthBar
+	var thirst = $Bars/ThirstBar
+	var hunger = $Bars/HungerBar
+	health.value = hp
+	thirst.value = soif
+	hunger.value = faim
 
 
 
