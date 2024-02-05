@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bt6qnpk42agfx"]
+[gd_scene load_steps=10 format=3 uid="uid://bt6qnpk42agfx"]
 
 [ext_resource type="Texture2D" uid="uid://dpsg734onljsa" path="res://asset/tiles_v1.png" id="1_03kmq"]
 [ext_resource type="PackedScene" uid="uid://dgevsb2hcuk3b" path="res://scenes/coffre.tscn" id="1_g27gp"]
 [ext_resource type="PackedScene" uid="uid://6rx6j31ng6sc" path="res://scenes/player.tscn" id="2_pxqga"]
 [ext_resource type="PackedScene" uid="uid://k4eshxy0fdka" path="res://scenes/npc.tscn" id="4_aioml"]
-[ext_resource type="PackedScene" uid="uid://8k16nge3dbsi" path="res://scenes/work_station_shop.tscn" id="4_cdnb6"]
 [ext_resource type="PackedScene" uid="uid://dnlohrf0v47fn" path="res://scenes/house.tscn" id="5_inrba"]
 [ext_resource type="PackedScene" uid="uid://d16jlic470g2h" path="res://ui/hud.tscn" id="8_x1fet"]
 
@@ -18,8 +17,8 @@ tile_size = Vector2i(256, 256)
 sources/0 = SubResource("TileSetAtlasSource_nd1jo")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_fqttg"]
-vertices = PackedVector2Array(1671, -1279, 1844, -1281, 2397, -1269, 2401, -42, 1087, -42, 638, -43, 1099, -1265, 2401, -1910, 1087, -1910, 621, -1964, -1690, -3354, 8950, -3325, -694, -1964, -1687, 2562, -682, -1318, -677, -43, 4072, -1265, 4072, -1469, 8972, 2554, 3866, -1469, 3792, -1478, 2397, 599, 3866, -1265, 3792, -1274, 3587, -1274, 3435, -1274, 3229, -1274, 3102, -1279, 3229, -1478, 2896, -1279, 1671, 589, 1844, 587, 1099, 603, 3587, -1478, 617, -1322, 3102, -1483, 1671, -1366, 1183, -1358, 1182, -1814, 2297, -1814, 1844, -1373, -599, -1867, 517, -1867, 511, -1416, 64, -1427, -597, -1412, -110, -1420, 64, -1334, -110, -1332, -582, 53, 534, 53, 528, 504, 81, 494, -580, 508, -93, 501, 81, 586, -93, 588, 1182, 54, 2297, 54, 2291, 505, 1844, 495, 1183, 509, 1671, 502, 2291, -1362, 3435, -1478, 2896, -1483, -665, 602, 634, 598)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6), PackedInt32Array(7, 8, 9, 10, 11), PackedInt32Array(10, 9, 12), PackedInt32Array(13, 10, 12, 14, 15), PackedInt32Array(16, 17, 11, 18), PackedInt32Array(7, 11, 17, 19, 20), PackedInt32Array(16, 18, 21, 3, 22), PackedInt32Array(23, 22, 3, 24), PackedInt32Array(25, 24, 3), PackedInt32Array(26, 25, 3), PackedInt32Array(26, 3, 27, 28), PackedInt32Array(29, 27, 3, 2), PackedInt32Array(30, 31, 21, 18, 13, 32), PackedInt32Array(19, 22, 23, 20), PackedInt32Array(7, 20, 33), PackedInt32Array(34, 9, 8, 6, 5), PackedInt32Array(28, 27, 35), PackedInt32Array(36, 37, 38, 39, 40), PackedInt32Array(41, 42, 43, 44), PackedInt32Array(45, 41, 44, 46), PackedInt32Array(46, 44, 47, 48), PackedInt32Array(49, 50, 51, 52), PackedInt32Array(53, 49, 52, 54), PackedInt32Array(54, 52, 55, 56), PackedInt32Array(57, 58, 59, 60), PackedInt32Array(61, 57, 60, 62), PackedInt32Array(62, 60, 31, 30), PackedInt32Array(39, 63, 40), PackedInt32Array(36, 40, 1, 0), PackedInt32Array(33, 24, 25, 64), PackedInt32Array(7, 33, 64), PackedInt32Array(7, 64, 28, 35), PackedInt32Array(7, 35, 65), PackedInt32Array(2, 7, 65, 29), PackedInt32Array(48, 47, 34, 5, 15, 14), PackedInt32Array(13, 15, 66), PackedInt32Array(32, 13, 66, 67), PackedInt32Array(67, 5, 4, 32), PackedInt32Array(67, 66, 56, 55)])
+vertices = PackedVector2Array(-1687, 2562, 634, 597, 1088, 596, 1845, 596, 2397, 598, 8972, 2554, 2906, -1028, 3866, -1265, 4072, -1265, 2395, -112, 3587, -1274, 3792, -1274, 2906, -1233, 82, 595, 2513, -1371, 2513, -1166, 2397, -1270, 2395, -1980, 4072, -1469, 8950, -3325, -1690, -3354, 2700, -1028, 3866, -1469, 3792, -1478, 1087, -1981, 1088, -1272, 1087, -113, 617, -1323, 615, -2034, 518, -1937, 523, -1420, 65, -1420, -597, -1935, -597, -1416, -111, -1415, 65, -1325, -108, -1327, 2298, -1884, 2303, -1366, 1845, -1366, 1183, -1882, 1183, -1362, 1670, -1361, 1845, -1272, 1673, -1274, 2298, -16, 2303, 502, 1845, 502, 1183, -13, 1183, 505, 1670, 507, 1673, 594, 535, -17, 540, 501, 82, 501, -580, -14, -580, 504, -94, 506, -91, 593, -676, 595, -677, -114, -693, -1325, 2719, -1233, 2719, -1371, 3587, -1478, 2700, -1166, 632, -113, -694, -2035)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 5, 4, 9), PackedInt32Array(10, 11, 7, 6, 12), PackedInt32Array(13, 1, 0), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(8, 18, 19, 5), PackedInt32Array(20, 19, 18, 17), PackedInt32Array(21, 6, 9), PackedInt32Array(22, 7, 11, 23), PackedInt32Array(24, 25, 26, 27, 28), PackedInt32Array(29, 30, 31, 32), PackedInt32Array(33, 32, 31, 34), PackedInt32Array(34, 31, 35, 36), PackedInt32Array(37, 38, 39, 40), PackedInt32Array(41, 40, 39, 42), PackedInt32Array(42, 39, 43, 44), PackedInt32Array(45, 46, 47, 48), PackedInt32Array(49, 48, 47, 50), PackedInt32Array(50, 47, 3, 51), PackedInt32Array(52, 53, 54, 55), PackedInt32Array(56, 55, 54, 57), PackedInt32Array(57, 54, 13, 58), PackedInt32Array(58, 13, 0, 59), PackedInt32Array(60, 59, 0, 20, 61), PackedInt32Array(12, 62, 63, 64, 10), PackedInt32Array(15, 65, 21, 9, 26), PackedInt32Array(63, 14, 17, 64), PackedInt32Array(16, 15, 26, 43), PackedInt32Array(44, 43, 26, 25), PackedInt32Array(35, 27, 26), PackedInt32Array(60, 61, 36, 35, 26, 66), PackedInt32Array(23, 64, 17), PackedInt32Array(22, 23, 17, 18), PackedInt32Array(20, 17, 24, 28), PackedInt32Array(20, 28, 67), PackedInt32Array(20, 67, 61), PackedInt32Array(1, 66, 26, 2), PackedInt32Array(3, 2, 51)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1716.52, 2593.22, -1720.51, -3385.14, 8979.77, -3354.8, 9002.72, 2584.12)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 30.0
@@ -41,11 +40,11 @@ metadata/_edit_lock_ = true
 [node name="coffres" type="Node2D" parent="NavRegion"]
 
 [node name="Coffre2" parent="NavRegion/coffres" instance=ExtResource("1_g27gp")]
-position = Vector2(3332.24, -1375.5)
+position = Vector2(2803.31, -1129.73)
 scale = Vector2(0.997975, 1.0114)
 
 [node name="Coffre" parent="NavRegion/coffres" instance=ExtResource("1_g27gp")]
-position = Vector2(2998.91, -1380.55)
+position = Vector2(2615.69, -1268.29)
 scale = Vector2(0.997974, 1.0114)
 
 [node name="Coffre3" parent="NavRegion/coffres" instance=ExtResource("1_g27gp")]
@@ -74,9 +73,6 @@ position = Vector2(-1116, 1524)
 
 [node name="worhsops" type="Node2D" parent="NavRegion"]
 
-[node name="WorkStationShop" parent="NavRegion/worhsops" instance=ExtResource("4_cdnb6")]
-position = Vector2(3300, -800)
-
 [node name="NPCS" type="Node2D" parent="."]
 position = Vector2(0.000244141, -0.00012207)
 
@@ -84,7 +80,7 @@ position = Vector2(0.000244141, -0.00012207)
 position = Vector2(1814, -1124)
 
 [node name="NPC2" parent="NPCS" instance=ExtResource("4_aioml")]
-position = Vector2(2084, -876)
+position = Vector2(2105, -900)
 
 [node name="NPC3" parent="NPCS" instance=ExtResource("4_aioml")]
 position = Vector2(1547, -932)
@@ -96,7 +92,7 @@ position = Vector2(1695, -933)
 position = Vector2(1869, -890)
 
 [node name="Player" parent="." instance=ExtResource("2_pxqga")]
-position = Vector2(2508, -990)
+position = Vector2(2280, -1005)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 metadata/_edit_lock_ = true

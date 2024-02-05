@@ -2,13 +2,6 @@ extends Resource
 class_name Transformation
 
 
-# TODO encore :
-# value : [
-#		[paramètre entrée (ex chaleur flamme ou exp personnage)],
-#		[stacks_consommé * ratio],
-
-
-
 enum {
 	ON_ACTOR = -1,
 	ON_ENVIRONMENT = -2,
@@ -64,17 +57,11 @@ static var transfo_forger_epee = Transformation.new(
 
 
 
-
-
 ## liste des transfo de bases créées
 static var DEFAULT = [
 	transfo_manger,
 	transfo_forger_epee,
 ]
-
-
-
-
 
 
 
@@ -119,7 +106,9 @@ func transform(actor, stacks_entree, at_most):
 	# on crée les stacks en sortie
 
 	for prod in parametres_sortie:
-		array.append(prod.produce(actor, ratio_quantite * prod.ratio, stacks_entree))
+		var produced = prod.produce(actor, ratio_quantite * prod.ratio, stacks_entree)
+		if produced != null:
+			array.append(produced)
 
 	# on enlève les réactifs consommés
 	

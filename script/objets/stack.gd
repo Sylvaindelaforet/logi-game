@@ -103,8 +103,8 @@ func contains_enough(quantite):
 func remove(quantite):
 	var masse
 	if chose.is_denombrable:
-		if not quantite is int:
-			push_error("can't retirer à un denombrable la valeur :", quantite)
+		if quantite - round(quantite) != 0:
+			push_error("quantite is not a int, it is :", quantite)
 		nombre -= quantite
 		masse_stack = masse_individuelle * nombre
 		masse = quantite * masse_individuelle

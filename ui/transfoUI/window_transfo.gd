@@ -17,20 +17,23 @@ func _ready():
 
 
 func _on_transfo_clicked():
-	var array = [] 
+	var array_stack = [] 
 	var produced = []
 	# get stacks from slot for transfo
 	for slot in liste_reagent:
 		if slot.stack_linked == null:
 			return
-		array.append(slot.stack_linked)
+		array_stack.append(slot.stack_linked)
 
 	var at_most = $ColorBack/Panels/TransfoSide/List/Number/Choice.value
 
 	# execute order 66
-	produced = transfo_selected.transform($/root/Main/Player, array, at_most)
+	produced = transfo_selected.transform($/root/Main/Player, array_stack, at_most)
 
-	print(produced)
+	if produced != []:
+		for stack in produced:
+			interface.current_inv.add_stack(stack)
+		
 
 
 

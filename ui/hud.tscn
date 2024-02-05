@@ -10,21 +10,21 @@ script = ExtResource("1_8wj6o")
 [node name="ClicDroit" type="PopupMenu" parent="."]
 
 [node name="Button" type="Button" parent="."]
-offset_left = 875.0
-offset_top = 686.0
-offset_right = 1110.0
-offset_bottom = 759.0
+offset_left = 911.0
+offset_top = 736.5
+offset_right = 1146.0
+offset_bottom = 809.5
 text = "ouvrir craft"
 
 [node name="Button2" type="Button" parent="."]
-offset_left = 875.0
-offset_top = 763.0
-offset_right = 1110.0
-offset_bottom = 836.0
+offset_left = 911.0
+offset_top = 813.5
+offset_right = 1146.0
+offset_bottom = 886.5
 text = "ouvrir inventaire"
 
 [node name="Bordure" type="Sprite2D" parent="."]
-position = Vector2(684, 818)
+position = Vector2(720, 868.5)
 texture = ExtResource("2_nyvq1")
 
 [node name="Bars" type="Control" parent="."]
@@ -36,11 +36,10 @@ offset_bottom = 40.0
 [node name="HealthBar" type="ProgressBar" parent="Bars"]
 modulate = Color(0.956863, 0.227451, 0.431373, 1)
 layout_mode = 0
-offset_left = 280.0
-offset_top = 687.0
-offset_right = 580.0
-offset_bottom = 717.0
-max_value = 120.0
+offset_left = 316.0
+offset_top = 737.5
+offset_right = 616.0
+offset_bottom = 767.5
 value = 50.0
 show_percentage = false
 
@@ -51,21 +50,20 @@ anchor_left = 0.191
 anchor_top = 0.79
 anchor_right = 0.309
 anchor_bottom = 0.836
-offset_left = 277.36
-offset_top = 656.4
-offset_right = 294.64
-offset_bottom = 677.56
+offset_left = 313.36
+offset_top = 706.9
+offset_right = 330.64
+offset_bottom = 728.06
 text = "Hp
 "
 
 [node name="HungerBar" type="ProgressBar" parent="Bars"]
 modulate = Color(0.443137, 0.682353, 0.529412, 1)
 layout_mode = 0
-offset_left = 280.0
-offset_top = 723.0
-offset_right = 580.0
-offset_bottom = 753.0
-max_value = 120.0
+offset_left = 316.0
+offset_top = 773.5
+offset_right = 616.0
+offset_bottom = 803.5
 value = 50.0
 show_percentage = false
 
@@ -76,21 +74,20 @@ anchor_left = 0.191
 anchor_top = 0.79
 anchor_right = 0.309
 anchor_bottom = 0.836
-offset_left = 276.36
-offset_top = 694.4
-offset_right = 309.64
-offset_bottom = 715.56
+offset_left = 312.36
+offset_top = 744.9
+offset_right = 345.64
+offset_bottom = 766.06
 text = "Faim
 "
 
 [node name="ThirstBar" type="ProgressBar" parent="Bars"]
 modulate = Color(0.431373, 0.639216, 0.839216, 1)
 layout_mode = 0
-offset_left = 280.0
-offset_top = 760.0
-offset_right = 580.0
-offset_bottom = 790.0
-max_value = 120.0
+offset_left = 316.0
+offset_top = 810.5
+offset_right = 616.0
+offset_bottom = 840.5
 value = 50.0
 show_percentage = false
 
@@ -101,10 +98,10 @@ anchor_left = 0.191
 anchor_top = 0.79
 anchor_right = 0.309
 anchor_bottom = 0.836
-offset_left = 280.36
-offset_top = 731.4
-offset_right = 304.64
-offset_bottom = 752.56
+offset_left = 316.36
+offset_top = 781.9
+offset_right = 340.64
+offset_bottom = 803.06
 text = "Soif
 "
 
