@@ -1,33 +1,51 @@
 # Craft Simulator
+![](https://github.com/Sylvaindelaforet/logi-game/blob/main/pictures-readme/example1.png)
 
-Craft Simulator (nom temporaire), est un jeu réalisé par Sylvain Crouzet (l'auteur de ce texte), avec les illustrations de Marilou Botta (quand elles sont belles, quand elles ne le sont pas elles sont de moi).
-
-Pour l'instant ce projet est plutôt un centre de test pour l'utilisation du moteur Godot ainsi que pour l'implantation de différents paradigmes pour la programmation d'un système de craft libre plus libre.
-
-
+Ce jeu est réalisé par Sylvain Crouzet (l'auteur de ce texte et programmeur), et par Marilou Botta, qui a réalisé les magnifiques illustrations.
 
 ## Les craft et les objets
 
-En faisant fi du bon sens, j'ai décidé de ne pas exprimer les craft (Transformation, voir script/transformations/transformation.gd) par des fonctions mais par des objets. D'un point de vue logique comme de celui de la programation il est plus simple de créer l'action manger comme une fonction qui prend en paramètre des aliments et qui restaure le joueur.
+![](https://github.com/Sylvaindelaforet/logi-game/blob/main/pictures-readme/example2.png)
 
-Cependant, après avoir créé la fonction manger, il faudra refaire le même travail pour créer la fonction boire, à la limite on peut les factoriser en "ingérer", mais le problème restera le même pour crafter à une station de travail ou abattre un arbre.
+En faisant fi du bon sens, j'ai décidé de ne pas exprimer les craft (Transformation, voir script/transformations/transformation.gd) par des fonctions mais par des objets.
 
-Pour éviter de devoir créer des fonctions sur mesure pour de multiples actions, je propose plutôt de créer un objet transformation qui définit un craft, mais aussi l'action de manger.
+### Avantages
 
-L'objectif était de créer une classe transformation (éventuellement plusieurs si besoin ultérieurement), qui utilise des fonctions de bases comme des getters et setters sur les propriétés des objets.
-Ainsi l'action de manger prend en paramètre un objet, et augmente la satiété de l'acteur qui effectue l'action en fonction des propriétés nutritives de l'objet. 
+Créer un objet pour les craft permet de définir facilement et rapidement une multitude de transformations. 
+
+### Inconvénients
+
+Pour définir une transformation, des règles ont été créées pour définir les réactifs et les produits, mais si on veut ajouter des possibilités, il faudra soit 
+les modifier et donc vérifier que tout ce qui a été déjà fait fonctionne, soit créer un nouveau type de transformation.
+
+### Exemple
+Ainsi l'action de manger prend en paramètre un objet, et augmente la satiété de l'acteur, en fonction des propriétés nutritives de l'objet. 
 
 Pour bien organiser ces transformations, un système de tag serait intéressant à ajouter.
 
 ## City builder sans city building ?
 
-Cette expérimentation sur les craft n'est pas l'unique idée derrière ce jeu, il s'inspire également de jeux comme the guild ou encore les city builder. Nous incarnons un joueur qui vit dans une ville ou les npc agissent à l'image des habitants d'une ville
+L'objectif était de créer une sorte de rpg où on serait jouerait ce qui est d'habitude un pnj dans les city-builders.
+
+### Élément rpg
+Pour étudier des éléments de gameplay utile pour les rpg, 
+
+Cette expérimentation sur les craft n'est pas l'unique idée derrière ce jeu, il s'inspire également de jeux comme the guild ou encore les city builder.
 
 Pour cela, un système de task est utilisé, ce qui est très classique pour les jeux de gestion, et qui marche très bien. Voir Oxygen not included ou Timberborn, par exemple,
 où le joueur ordonne des travaux, des constructions... et ce sont des pnj qui se déplacent pour les réaliser.
 
+### Élément city-builder
 Pour l'instant seulement des tasks très simple ont été essayées comme celle de manger depuis son inventaire ou de se diriger à un lieu.
 
 Cette partie doit cependant être retravaillée maintenant que le système de transformation et d'inventaire est plus abouti.
 
+## Est-ce un jeu ?
+
+Beaucoup de travail est possible pour simplifier l'expérience du joueur, mais ce genre de jeu de gestion de précision demande une certaine forme d'automatisation.
+En effet, on parle d'un jeu et pas d'un travail, donc toute la gestion laborieuse doit être gérée par l'ordi (en général les pnj). 
+
+Je cherchais un jeu à mi-chemin en rpg et jeu de gestion.
+Même si toute cette gestion pourrait être gérée par des pnj avec leur système de tâche,
+le système n'est pas encore assez abouti.
 
